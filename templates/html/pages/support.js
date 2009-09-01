@@ -72,6 +72,18 @@
                         Github
                     </a>. 
                 </p>
+				<h3>continous builds</h3>
+                <p>
+                    <img src={$.env('root')+'images/logo_interior_transparent.png'} 
+                         alt='run code run'
+                         style='float:right;'
+						 width='140px'/>
+                    Our commits are kept hoest thanks to continuosly tested builds 
+					donated graciously by   
+                    <a href='http://runcoderun.com/thatcher/env-js/'>
+                        Run Code Run
+                    </a>. 
+                </p>
             </div>
          </div>
     </block> 

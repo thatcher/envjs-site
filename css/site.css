@@ -161,6 +161,11 @@ h1, h2, h3{
     border-bottom:1px dashed;
 }
 
+#recentnews img{
+    border:1px dotted;
+	margin:0 15px;
+	padding:3px;
+}
 #recentnews h3 a{
    text-decoration:none;
    border:none;
@@ -540,6 +545,7 @@ h1, h2, h3{
 }
 #news h4{
    margin:1em 1em 1em 1em;
+   border-bottom:1px dashed;
 }
 #news strong{
    margin:1em 1em 1em 1em;
@@ -548,10 +554,13 @@ h1, h2, h3{
    margin:1em 0 0 1em;
    border:1px dotted;
 }
+#news div.noborder{
+   border:none;
+}
 #news img{
-    margin:2em;
-    padding:1em;
-    border:1px dashed;
+    border:1px dotted;
+	margin:0 15px 15px 15px;
+	padding:3px;
 }
 #news  a{
    text-decoration:none;

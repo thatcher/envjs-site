@@ -19,13 +19,18 @@
                 <h3>recent <a href={$.env('root')+'news'}>news</a></h3>
                 <ul class='roe_recent_news'>
                     {_('.*', _$.news).map(function(){
-                        return {li:{ $:[
-                            {h4:{$:[
-                                this.title + '-',
-                                {em:this.date}
-                             ]}},
-                            _.e4x(this.description)
-                        ]}};
+                        return {li: {
+							div: {
+								$class: 'clear',
+								$: [{
+									h4: {
+										$: [this.title + '-', {
+											em: this.date
+										}]
+									}
+								}, _.e4x(this.description)]
+							}
+						}};
                     }).e4x()} 
                 </ul>
                 <a href={$.env('root')+'news'}>news archives</a>

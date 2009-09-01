@@ -17,7 +17,7 @@
           <param-value>WEB-INF/logging.conf</param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
-    </servlet> 
+    </servlet>
     <!--
        The rhino dispatcher determines the very basic
 	   url patterns that are routed to jquery-claypool.
@@ -41,12 +41,12 @@
           <param-name>dispatch-function</param-name>
           <param-value>ClaypoolServerHandler</param-value>
         </init-param>  
-        <!-- Uncomment for production releases -->
-        <init-param>
+        <!-- Set to true for production releases -->
+        <!--init-param>
           <param-name>active-reload</param-name>
           <param-value>false</param-value>
-        </init-param>
-        <load-on-startup>1</load-on-startup>
+        </init-param-->
+        <load-on-startup>2</load-on-startup>
     </servlet>  
 	
 	<!-- jsx urls are routed to the dynamic service -->

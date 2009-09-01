@@ -25,6 +25,7 @@
 	    appengine:{
 	        server:{
                 root:'/',
+				monitorTemplates:'false',
 	            templates:'http://env-js.appspot.com/templates/',
 	            data:'http://env-js.appspot.com/data/'
 	        }
@@ -34,6 +35,7 @@
 	    //______________________________________________________________________________________//
 	    dev:{
 	        server:{
+				monitorTemplates:'true',
 	            db: {
 	                DRIVER 	: "org.sqlite.JDBC",
 	                PROVIDER:"JDBC",

@@ -63,7 +63,9 @@
 					blockMapCache[url] = blockMap;
 					
 					//causes template to be added to file monitor
-					//try{load(url)}catch(e){};           
+					if($.env&&$.env('monitorTemplates')=='true'){
+						try{load(url)}catch(e){};
+					}           
 	            }, 
 				error:function(xhr, status, e){
                     log.error('error loading %s (%s)', url, status).
