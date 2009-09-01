@@ -1,0 +1,629 @@
+body {
+    border: 1px #000;
+    padding: 0;
+    margin-top:1em;
+    margin-bottom:3em;
+    background-attachment:fixed;
+    font-family:Verdana, Geneva, Arial, Helvetica, sans-serif;
+    /*background-image:url(../images/outterspacesymbols_backgrou.jpg);*/
+}
+body strong{
+    text-transform:uppercase;
+}
+body a{
+    text-decoration:none;
+}
+body div.colborder{
+    border-right-color:#000;
+}
+body form input{
+   margin:1em;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-weight:normal;
+}
+h1, h2, h3{
+    margin:0 0 1em 1em;
+    border-top:1px solid;
+}
+
+
+
+
+
+/*****************************/
+
+
+
+
+
+#header{
+    border-top:1px solid ;
+    border-left:1px solid ;
+    border-right:1px solid ;
+}
+#header div {
+    margin-bottom:0px;
+    padding:1em;
+}
+#header a {
+    border:none;
+}
+
+
+
+
+
+/*****************************/
+
+
+
+
+
+#global-nav {
+    margin-top:50px;
+    margin-bottom:0px;
+}
+#global-nav ul{
+    float:right;
+    margin-bottom:0px;
+    margin-right:5px;
+}
+
+#global-nav ul li{
+    list-style:none;
+    display:inline;
+}
+
+
+
+
+
+/*****************************/
+
+
+
+
+
+#main{
+    border-left:1px solid;
+    border-right:1px solid;
+}
+#main h3{
+    padding:4px;
+}
+#main p {
+    margin:1em;
+    padding:1em;
+}
+
+
+
+
+
+/*****************************/
+
+
+
+
+
+#welcome {
+    margin:1em;
+    margin-bottom:0;
+}
+#welcome h3{
+    border:none;
+}
+#welcome p{
+    border:1px solid;
+    font-size:0.8em;
+    text-transform:uppercase;
+    margin:0.5em 14em 3em;
+    font-family:"Arial Rounded MT Bold";
+    
+}
+#welcome p img{
+    /*border:1px dashed #777;*/
+    padding:0.3em;
+    float:right;
+}
+
+
+
+
+
+/*****************************/
+
+
+
+
+
+#recentnews {
+    margin:1em;
+    border:1px solid;
+    margin-top:0;
+}
+#recentnews{
+    border:none;
+}
+#recentnews p {
+    margin:0.5em 1em 0.5em 6em;
+    padding:0.5em 1em;
+}
+#recentnews ul {
+    list-style:none;
+    display:inline;
+}
+#recentnews ul li h4{
+    text-align:right;
+    margin-right:2em;
+    margin-left:6em;
+    border-bottom:1px dashed;
+}
+
+#recentnews h3 a{
+   text-decoration:none;
+   border:none;
+   float:none;
+   margin:0;
+}
+#recentnews p a{
+   margin:0;
+   float:none;
+}
+#recentnews a{
+   text-decoration:none;
+   border-bottom:1px dashed;
+   margin:1em;
+   float:right;
+}
+#recentnews a:hover{
+   border-bottom:1px dashed;
+}
+
+
+
+/*****************************/
+
+
+
+
+
+#newreleases{
+    margin:1em;
+    border:1px dotted;
+}
+#newreleases h3{
+   margin:1em 0 0 1em;
+   border:none;
+}
+#newreleases h3 a{
+   text-decoration:none;
+}
+#newreleases ul {
+    list-style:none;
+    display:inline;
+}
+#newreleases ul li img{
+    border:1px dashed;
+    float:right;
+    margin:1em;
+    padding:0.5em;
+}
+#newreleases ul li img:hover{
+    border:1px dashed;
+}
+
+
+
+
+
+/****************************
+ * 
+ * #upcomingevents
+ * 
+ * */
+#upcomingevents{
+    margin:1em;
+    border:1px dotted;
+}
+#upcomingevents h3{
+    border:none;
+}
+#upcomingevents p {
+    margin:0;
+    padding:1em;
+}
+#upcomingevents ul {
+    list-style:none;
+    display:inline;
+}
+#upcomingevents ul li {
+    margin:1em;
+    text-align:center;
+}
+#upcomingevents ul li img{
+    border:1px dashed;
+    padding:1em;
+}
+#upcomingevents ul li img:hover{
+    border:1px dashed;
+}
+#upcomingevents ul li h6{
+    margin-bottom:5px;
+}
+
+
+
+
+
+/****************************
+ * 
+ * #releases
+ * 
+ * */
+#releases{
+    margin:0 1em 1em 1em;
+}
+#releases div{
+   margin:1em 0 0 1em;
+}
+#releases p {
+    margin:1em;
+    padding:1em;
+}
+#releases ul {
+    list-style:none;
+    display:inline;
+}
+#releases ul li {
+    margin:1em;
+}
+#releases ul li img{
+    border:  1px dotted;
+    padding:1em;
+    margin:1em;
+}
+#releases ul li img:hover{
+    border:1px dashed;
+    padding:1em;
+    margin:1em;
+}
+#releases ul li h6{
+    text-align:right;
+    margin-top:-35px;
+}
+
+
+
+
+/****************************
+ * 
+ * #release
+ * 
+ * */
+#release{
+    margin:0 1em 1em 1em;
+}
+#release p {
+    margin:1em;
+    padding:1em;
+}
+#release div img{
+    border:  1px dotted ;
+    padding:1em;
+    margin:1em;
+}
+#release div.first{
+    text-align:right;
+}
+#release div.first ul{
+    margin-right:0;
+}
+#release div ul li a{
+    text-decoration:none;
+}
+
+#release div.box{
+    border: 1px dashed;
+    padding:0.5em;
+    float:left;
+}
+
+#release div.box h6{
+    text-align:center;
+}
+#release div.box p{
+    margin:0.1em;
+    padding:0.1em;
+}
+#release a{
+    border-bottom:1px dashed;
+    text-decoration:none;
+}
+
+#release #description img{
+    border: none;
+    margin: 0 0 0 1em;
+    padding:0;
+}
+#release #media ol{
+    margin-left:2em;
+}
+
+/****************************
+ * 
+ * #docs
+ * 
+ * */
+#docs{
+    margin:0 1em 1em 1em;
+    /*border:1px dotted #888;*/ 
+}
+#docs h3{
+   border-top:1px dotted;
+   margin:0 1em 1em 1em;
+}
+#docs div{
+   margin:1em 0 0 1em;
+}
+#docs p {
+    margin:1em;
+    padding:1em;
+}
+#docs ul {
+    list-style:none;
+    display:inline;
+}
+#docs ul li {
+    margin:1em;
+    padding:1px;
+}
+#docs div.first ul li {
+    text-align: right;
+}
+#docs div.last ul li {
+    text-align: left;
+}
+#docs ul li img{
+    border:2px dotted;
+    padding:1em;
+    margin:0.5em 0.5em 0 0.5em;
+}
+#docs ul li a{
+    text-decoration:none;
+}
+#docs ul li:hover{
+    padding:0px;
+    border:1px dashed;
+}
+
+
+
+
+/****************************
+ * 
+ * #doc
+ * 
+ * */
+#doc{
+    margin:0 1em 1em 1em;
+}
+#doc div{
+   margin:1em 0 0 1em;
+}
+#doc p {
+    margin:1em;
+    padding:1em;
+}
+#doc div img{
+    border:  1px dotted;
+    padding:1em;
+    margin:1em;
+}
+#doc div.first{
+    text-align:right;
+}
+#doc div.first ul{
+    margin-right:0;
+}
+#doc div.first ul li a{
+    text-decoration:none;
+}
+#doc a{
+    border-bottom:1px dashed;
+}
+
+
+
+
+/****************************
+ * 
+ * #contact
+ * 
+ * */
+#contact{
+    margin:0 1em 1em 1em;
+}
+#contact h3{
+   border-top:1px dotted ;
+   margin:0 1em 1em 1em;
+}
+#contact div{
+   margin:1em 0 0 1em;
+}
+#contact  a{
+   text-decoration:none;
+}
+
+
+
+#mailing_list{
+    margin:1em;
+    border:1px dotted ;
+    padding-bottom:1em;
+}
+#mailing_list h3{
+   border:none;
+   
+}
+#mailing_list p {
+    margin:1em;
+    padding:1em;
+}
+#mailing_list form {
+    margin:1em;
+    padding:1em;
+    border:1px dashed ;
+}
+
+#mailing_list span {
+   text-align:center;
+   margin:2em;
+   width:100%;
+}
+#mailing_list  a{
+   text-decoration:none;
+   border-bottom:1px dashed ;
+}
+
+
+/****************************
+ * 
+ * #events
+ * 
+ * */
+#events{
+    margin:0 1em 0 1em;
+}
+#events h3{
+   border-top:1px dotted ;
+   margin:0 1em 1em 1em;
+}
+#events div{
+   margin:1em 0 0 1em;
+}
+#events img{
+    margin-top:1em;
+    padding:1em;
+    border:1px dashed ;
+}
+#events  a{
+   text-decoration:none;
+}
+#events  hr{
+   margin-top:4em;
+   margin-bottom:-4em;
+   background-color:#000;
+}
+#events div.event{
+    background:transparent none repeat scroll 0 0;
+}
+#events div.event p{
+   margin:0.3em;
+   padding:0;
+}
+
+
+
+/****************************
+ * 
+ * #news (archive)
+ * 
+ * */
+#news{
+    margin:0 1em 0 1em;
+}
+#news h3{
+   border-top:1px dotted;
+   margin:0 1em 1em 1em;
+}
+#news h4{
+   margin:1em 1em 1em 1em;
+}
+#news strong{
+   margin:1em 1em 1em 1em;
+}
+#news div{
+   margin:1em 0 0 1em;
+   border:1px dotted;
+}
+#news img{
+    margin:2em;
+    padding:1em;
+    border:1px dashed;
+}
+#news  a{
+   text-decoration:none;
+}
+/****************************
+ * 
+ * #footer
+ * 
+ * */
+#footer {
+    text-align: right;
+} 
+#footer{
+    border-left:1px solid ;
+    border-right:1px solid ;
+    border-bottom:1px solid ;
+}
+#footer div{
+    margin-top:0px;
+    padding:1em;
+}
+
+
+
+
+
+/****************************
+ * 
+ * #blueprintbutton
+ * 
+ * */
+#blueprintbutton {
+    /*float: right;
+    margin-top: 85px;
+    margin-right: 24px;
+    vertical-align: middle;*/
+   
+   position:relative;
+   bottom:0;
+   left:0;
+} 
+
+
+
+
+
+/****************************
+ * 
+ * #sharethisbutton
+ * 
+ * */
+#sharethisbutton {
+    /*float: left;
+    margin:0;
+    padding-top:70px;*/
+   position:relative;
+   bottom:0;
+   left:0;
+   margin:0;
+}
+
+
+/****************************
+ * 
+ * #sharethisbutton
+ * 
+ * */
+#copyright {
+    margin:0;
+}
+#copyright blockquote{
+    margin:0;
+    padding:0;
+}
+/*****************************/

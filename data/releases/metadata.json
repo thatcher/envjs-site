@@ -1,0 +1,51 @@
+{_:[
+/**************************************************\
+ * Releases Metadata *
+\**************************************************/
+    
+    /**************************************************\
+     * 1.0 rc Candidates *
+    \**************************************************/
+    {
+        id:'1.0.rc6',
+        name:'Latest Official',
+        description:
+            <><p>
+                We are rapidly approaching our milestone of realizing
+                a complete implementation of the core browser javascript
+                apis, and finally rolling out release candidates.
+                There are many notable improvements so please checkout
+                the release notes.  We are also (finally) adding a
+                docs section that will cover all the basic configurables,
+                hooks, and samples you need to get rolling!
+            </p></>,
+       tar:'http://github.com/thatcher/env-js/tarball/master',
+       zip:'http://github.com/thatcher/env-js/zipball/master',
+       README:'http://github.com/thatcher/env-js/raw/master/README',
+       artifacts:[{
+           label:'env.rhino.js',
+           url:'http://github.com/thatcher/env-js/raw/master/dist/env.rhino.js',
+           description:<><p>pure js implementation, just add rhino (no frames support)</p></>
+       },{
+           label:'env.frames.jar',
+           url:'http://github.com/thatcher/env-js/raw/master/dist/env.frames.jar',
+           description:<><p>add to class path along with rhino for frames support</p></>
+       },{
+           label:'env-js.jar',
+           url:'http://github.com/thatcher/env-js/raw/master/dist/env-js.jar',
+           description:<>
+               <p>
+                   our convenient repackage of the latest rhino with envjs 
+                   frame support, html jtidy, and jline console support
+               </p>
+           </>
+       }],
+       notes:[
+           'Support for frames and iframes!',
+           'Improved error handling in XHR.',
+           'Corrected several bugs in Javascript DOM',
+           'Synchronized thread for window timers!',
+           '1340+ tests pass in jQuery 1.3.2'
+       ]
+    }
+]}

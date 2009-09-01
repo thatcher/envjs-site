@@ -1,0 +1,44 @@
+{_:[
+    
+    {
+        title:_.titled(2,false),
+        date:'July 10th, 2009',
+        calendar:'07/10/2009',
+        description:<>
+            <p>{_.paragraph(1, false)}</p>
+            <p></p>
+        </>
+    },{
+        title:_.titled(2,false),
+        date:'July 5th, 2009',
+        calendar:'07/05/2009',
+        description:<>
+            <p>{_.paragraph(1, false)}</p>
+            <p></p>
+        </>
+    },{
+        title:_.titled(2,false),
+        date:'June 30th, 2009',
+        calendar:'06/30/2009',
+        description:<>
+            <p>{_.paragraph(1, false)}</p>
+            <p></p>
+        </>
+    },{
+        title:_.titled(2,false),
+        date:'June 12th, 2009',
+        calendar:'06/12/2009',
+        description:<>
+            <p>{_.paragraph(1, false)}</p>
+            <p></p>
+        </>
+    },{
+        title:_.titled(2,false),
+        date:'May 30th, 2009',
+        calendar:'05/30/2009',
+        description:<>
+            <p>{_.paragraph(1, false)}</p>
+            <p></p>
+        </>
+    }
+]}
