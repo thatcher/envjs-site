@@ -1,4 +1,4 @@
-{_:[ 
+{'_':[ 
 /**************************************************\
  * Docs Metadata *
 \**************************************************/
@@ -8,24 +8,155 @@
      * Getting Started *
     \**************************************************/
     {
-        id:'guide',
-        version:'1.0.x',
-        label:'Getting Started', 
-        description:<>
+        'id':'guide',
+        'version':'1.0.x',
+        'label':'Getting Started', 
+        'description':<>
             <p>
-                
+                this is a pig... oink, oink! 
             </p>
         </>
     },
-    {
-        id:'api',
-        version:'1.0.x',
-        label:'API', 
-        description:<>
-            <p>
-                
-            </p>
-        </>
+    /**************************************************\
+     * API *
+    \**************************************************/
+     {
+        'id':'api',
+        'version':'1.0.x',
+        'label':'API', 
+        'options':
+     [{
+'option':'appCodeName',
+'description':<>
+     <p>
+        <strong>
+            Sets the value returned for
+            <code>window.navigator.appCodeName</code>
+        </strong><br/>
+        <span>For example, in Firefox this is 'Mozilla'.</span><br/> 
+        <em>(can be used to emulate different browsers)</em><br/>
+        <strong>default: </strong>
+        <span class='api-default-value'>"Envjs"</span>
+    </p>
+    
+    <pre class='box'><code>...
+    Envjs(&amp;#x7B;
+        appCodeName:'Mozilla'
+    &#x7D;);
+    
+    //returns 'Mozilla'
+    window.navigator.appCodeName;
+        ...</code></pre>
+</>  
+    },{
+'option':'appName',
+'description':<>
+    <p>
+        <strong>
+            Sets the value returned for
+            <code>window.navigator.appName</code>
+        </strong><br/>
+        <span>in Firefox this is 'Gecko/20070309 Firefox/2.0.0.3'</span><br/> 
+        <em>(can be used to emulate different browsers)</em><br/>
+        <strong>default: </strong>
+        <span class='api-default-value'>
+        "Resig/20070309 BirdDog/0.0.0.1"
+        </span>
+    </p>
+    <pre class='box'><code>...
+    Envjs(&#x7D;
+        appCodeName:'Gecko/20070309 Firefox/2.0.0.3'
+    &#x7D;);
+    
+    //returns 'Gecko/20070309 Firefox/2.0.0.3'
+    window.navigator.appName;
+    ...</code></pre>
+</>      
+            
+            // set this to true and see profile/profile.js 
+            // to select which methods to profile
+            //'profile' : <></>,
+    
+            //'log'     : <></>,
+            //'debug' : <></>,
+            //'info'  : <></>,
+            //'warn'  : <></>,
+            //'error' : <></>,
+    
+            //false
+            //'debugParser' : <></>,
+             
+            // uncomment these if you want to get some 
+            // internal log statementes
+            //'lineSource' : <></>,
+    
+            //'hashCode' : <></>,
+    
+            // resolves location relative to base or window location
+            //'location' : <></>,
+    
+            // For Java the window.timer is created using 
+            // the java.lang.Thread in combination
+            // with the java.lang.Runnable
+            
+            // = function(fn, time){};    
+            //'timer' : <></>,
+            // function(wait){};
+            //'wait' : <></>,
+    
+            // = false;    
+            //'javaEnabled' : <></>,
+    
+            // Used in the XMLHttpRquest implementation to run a
+            // request in a seperate thread
+            // = function(fn){};
+            //'runAsync' : <></>,
+            
+            // Used to write to a local file
+            // = function(text, url){};
+            //'writeToFile' : <></>,
+            
+            // Used to write to a local file
+            // = function(text, suffix){};
+            //'writeToTempFile' : <></>,
+            
+            // Used to delete a local file
+            // = function(url){};
+            //'deleteFile' : <></>,
+            
+            // = function(xhr, responseHandler, data){};
+            //'connection' : <></>,
+            
+            // = function(htmlstring){};
+            //'parseHTML' : <></>, 
+            // = function(xmlstring){};
+            //'parseXML' : <></>, 
+            // = function(expression, doc){};
+            //'xpath' : <></>, 
+            
+            //
+            //'tmpdir'         : <></>,
+            //'os_name'          : <></>,
+            //'os_arch'         : <></>,
+            //'os_version'     : <></>,
+            //'lang'             : <></>,
+            //'platform'         : <></>,
+            
+            // = function(){};
+            //'load' 
+            
+            //do nothing = function(){ 
+            //'safeScript': <></>,
+            
+            // "text/javascript"   :false,
+            // "text/envjs"        :true
+            //'scriptTypes': <></>,
+            
+            // = function(){};
+            //'onScriptLoadError' : <></>,
+            // = function(script, parser)
+            //'loadLocalScript' : <></>
+        }]
     }
     
 ]}

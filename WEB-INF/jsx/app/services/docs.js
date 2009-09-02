@@ -24,24 +24,17 @@
             if(id){
                 //find the docs based on the id passed
                 for(i=0;i<docs.length;i++){
-                    if(docs[i].doc == id){
+                    if(docs[i].id+'-'+docs[i].version == id){
                         doc = docs[i];
+						log.debug('found doc %s', id);
                         break;
-                    }
-                }
-                //find the releases for this doc
-                if(doc){
-                    for(i=0;i<releases.length;i++){
-                        if(releases[i].doc == doc.id){
-                            release.push(releases[i]);
-                        }
                     }
                 }
                 response.
                     m({
                         id:id,
                         doc:doc,
-                        release:release
+                        releases:releases
                     }).
                     render();
             }else{

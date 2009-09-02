@@ -417,20 +417,37 @@ h1, h2, h3{
 #doc div{
    margin:1em 0 0 1em;
 }
+#doc strong{
+	text-transform:none;
+}
+#doc div h3 {
+    border:1px dotted;
+    margin:0;
+	background-color:#E5ECF9;
+}
 #doc p {
     margin:1em;
     padding:1em;
 }
-#doc div img{
-    border:  1px dotted;
-    padding:1em;
-    margin:1em;
-}
 #doc div.first{
-    text-align:right;
+    text-align:left;
+}
+#doc div.last{
+    border:1px dotted;
+	padding:1em;
+	text-align:center;
+}
+#doc .box{
+	border: 1px dashed;
+	padding:0;
+}
+#doc div ul{
+    margin-right:0;
+    list-style:none;
 }
 #doc div.first ul{
     margin-right:0;
+	list-style:none;
 }
 #doc div.first ul li a{
     text-decoration:none;

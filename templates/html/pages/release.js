@@ -6,12 +6,12 @@
             <div class='first column span-5 colborder'>
                 <h4>{_$.release.name}</h4>
                 <h5>
-                    <a href={$.env('root')+'doc/guide'}>
+                    <a href={$.env('root')+'doc/guide-'+_$.release.id}>
                         Getting Started
                     </a>
                 </h5>
                 <h5>
-                    <a href={$.env('root')+'doc/api'}>
+                    <a href={$.env('root')+'doc/api-'+_$.release.id}>
                         API
                     </a>
                 </h5>
@@ -96,14 +96,4 @@
             </div>
         </div>
     </block>
-    
-	<block id='script_extra'>
-		<script type='text/javascript' src={$.env('root')+"scripts/release.js"}>
-            <!--
-            /**
-             *  allows the style link to serve as the hidden form submit
-             */
-            -->
-        </script>
-	</block>
 </e4x> 

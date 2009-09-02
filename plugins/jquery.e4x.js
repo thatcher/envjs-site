@@ -64,7 +64,7 @@
 					
 					//causes template to be added to file monitor
 					if($.env&&$.env('monitorTemplates')=='true'){
-						try{load(url)}catch(e){};
+						try{load(url.split('?')[0])}catch(e){};
 					}           
 	            }, 
 				error:function(xhr, status, e){

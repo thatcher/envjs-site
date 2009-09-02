@@ -9,7 +9,7 @@
                     {_('.*', _$.docs).map(function(index){
                         return (index%2===0)?{li:{
                             a:{
-                                $href:$.env('root')+'doc/'+this.id,
+                                $href:$.env('root')+'doc/'+this.id+'-'+this.version,
                                 $:[
                                     {strong:this.label},
                                     {em:this.version},
@@ -31,7 +31,7 @@
                     {_('.*', _$.docs).map(function(index){
                         return (index%2===1)?{li:{
                             a:{
-                                $href:$.env('root')+'doc/'+this.id,
+                                $href:$.env('root')+'doc/'+this.id+'-'+this.version,
                                 $:[
                                     {img:{
                                         $src:$.env('root')+'images/icon-brown.png',

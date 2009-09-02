@@ -7,7 +7,7 @@
      * 1.0 rc Candidates *
     \**************************************************/
     {
-        id:'1.0.rc6',
+        id:'1.0.x',
         name:'Latest Official',
         description:
             <><p>
