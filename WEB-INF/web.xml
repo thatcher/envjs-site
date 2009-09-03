@@ -42,10 +42,10 @@
           <param-value>ClaypoolServerHandler</param-value>
         </init-param>  
         <!-- Set to true for production releases -->
-        <!--init-param>
+        <init-param>
           <param-name>active-reload</param-name>
-          <param-value>false</param-value>
-        </init-param-->
+          <param-value>true</param-value>
+        </init-param>
         <load-on-startup>2</load-on-startup>
     </servlet>  
 	

@@ -1,0 +1,10 @@
+To run this application locally, just drop it into you Tomcat or Jetty 
+webapps folder and run.  
+
+Changing any of the javascript files while the server
+is running will trigger the webapp to reload so you don't have to restart
+the server manually to see changes take effect.
+
+Good luck and have fun javascripting!
+
+Thatcher
