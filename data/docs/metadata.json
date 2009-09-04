@@ -24,9 +24,73 @@
         'id':'api',
         'version':'1.0.x',
         'label':'API', 
+        'sections':[
+            'options',
+            'hooks',
+            'platform'
+        ],
         'options':
      [{
-'option':'appCodeName',
+'name':'scriptTypes',
+'description':<>
+    <p>
+        <strong>
+            Sets the script types that Envjs will load and run as part
+            of the page loading process.
+        </strong><br/>
+        <span style='color:red;'>
+          Envjs will not load external javascript by default.  Please be aware
+          of the security implications before you allow arbitrary scripts
+          to run on your system.
+        </span><br/> 
+        <em>
+          (can be used to run some scripts in a server environment, or for
+           more general multi-pass treatments of documents)
+        </em><br/>
+        <strong>default: </strong>
+        <span class='api-default-value'><br/>
+            "text/javascript"   :false,<br/>
+            "text/envjs"        :true
+        </span>
+    </p>
+    <pre class='box'><code>...
+    Envjs(&amp;#x7B;
+        $env.scriptTypes : &amp;#x7B;
+            "text/javascript"   :true
+        &#x7D;
+    &#x7D;);
+    //this will now load and run all external javascript
+    //emulating browser behavior
+    window.location = 'http://www.w3c.org/';
+    ...</code></pre>
+</>   
+    },{
+'name':'logLevel',
+'description':<>
+    <p>
+        <strong>
+            Sets the verbosity of the log messages produced by Envjs
+        </strong><br/>
+        <span>
+            Allowed values are Envjs.NONE, Envjs.ERROR, Envjs.WARN,
+            Envjs.INFO, and Envjs.DEBUG 
+        </span><br/>
+        <strong>default: </strong>
+        <span class='api-default-value'>
+            Envjs.INFO
+        </span>
+    </p>
+    <pre class='box'><code>...
+    Envjs(&amp;#x7B;
+        logLevel:Envjs.DEBUG
+    &#x7D;);
+    //you should see rather verbose logging in the console
+    //as the document loads.
+    window.location = 'http://www.w3c.org';
+    ...</code></pre>
+</>   
+    },{
+'name':'appCodeName',
 'description':<>
      <p>
         <strong>
@@ -44,12 +108,13 @@
         appCodeName:'Mozilla'
     &#x7D;);
     
+    window.location = 'http://localhost:8080/navigator.html'
     //returns 'Mozilla'
     window.navigator.appCodeName;
         ...</code></pre>
 </>  
     },{
-'option':'appName',
+'name':'appName',
 'description':<>
     <p>
         <strong>
@@ -68,298 +133,293 @@
         appCodeName:'Gecko/20070309 Firefox/2.0.0.3'
     &#x7D;);
     
+    window.location = 'http://localhost:8080/navigator.html'
     //returns 'Gecko/20070309 Firefox/2.0.0.3'
-    window.navigator.appName;
+    window.navigator.appCodeName;
     ...</code></pre>
 </>   
     },{
-'option':'profile',
+'name':'tmpdir',
 'description':<>
     <p>
-	TODO
+        <strong>
+            Sets the directory Envjs will use to write temporary source
+            files for script tags with javascript inline.  This is 
+            required for the rhino debugger and will likely be deprecated
+            in the future unless explicitly using a debugger.
+        </strong><br/>
+        <span>
+          This is analagous to the process Firebug uses to provide the 
+          ability to see locally 'eval'uated script.
+        </span><br/> 
+        <em>(default implementation is rhino/java)</em><br/>
+        <strong>default: </strong>
+        <span class='api-default-value'>
+        java.lang.System.getProperty("java.io.tmpdir")
+        </span>
+    </p>
+    <pre class='box'><code>...
+    Envjs(&amp;#x7B;
+        tmpdir:'/opt/tmp'
+    &#x7D;);
+    //you will find files loaded locally in 
+    ///opt/tmp (if it exists! else ?)
+    //though envjs will attempt to delete them 
+    //on shutdown of the jvm
+    window.location = 'http://localhost:8080/navigator.html'
+    ...</code></pre>
+</>   
+    },{
+'name':'os_name',
+'description':<>
+    <p>
+        <strong>
+             Sets value which is returned as part of
+            <code>window.navigator.appVersion</code>
+        </strong><br/>
+        <span>in Firefox on OSX this is '5.0 (Macintosh; en-US)'</span><br/> 
+        <em>(can be used to emulate different os)</em><br/>
+        <strong>default (rhino): </strong>
+        <span class='api-default-value'>
+        java.lang.System.getProperty("os.name")
+        </span>
+    </p>
+    <pre class='box'><code>...
+    Envjs(&amp;#x7B;
+        os_name:'Win 98'
+    &#x7D;);
+    //Not sure what the spectrum of values might be. 
+    //If you do, please let us know!
+    window.location = 'http://localhost:8080/navigator.html'
+    ...</code></pre>
+</>   
+    },{
+'name':'os_arch',
+'description':<>
+    <p>
+        <strong>
+             Sets value which is returned as part of
+            <code>window.navigator.platform</code>
+        </strong><br/>
+        <span>in Firefox on OSX this is 'MacIntel'</span><br/> 
+        <em>(can be used to emulate different os arch)</em><br/>
+        <strong>default (rhino): </strong>
+        <span class='api-default-value'>
+        java.lang.System.getProperty("os.arch")
+        </span>
+    </p>
+    <pre class='box'><code>...
+    Envjs(&amp;#x7B;
+        os_arch:'Pentium II (386)'
+    &#x7D;);
+    //Not sure what the spectrum of values might be. 
+    //If you do, please let us know!
+    window.location = 'http://localhost:8080/navigator.html'
+    ...</code></pre>
+</>   
+    },{
+'name':'os_version',
+'description':<>
+    <p>
+        <strong>
+             Sets value which is returned as part of
+            <code>window.navigator.userAgent</code>
+        </strong><br/>
+        <span>in Firefox on OSX this is 
+            "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.5; en-US; rv:1.9.1.2) Gecko/20090729 Firefox/3.5.2"</span><br/> 
+        <em>(can be used to emulate different os)</em><br/>
+        <strong>default (rhino): </strong>
+        <span class='api-default-value'>
+        java.lang.System.getProperty("os.version")
+        </span>
+    </p>
+    <pre class='box'><code>...
+    Envjs(&amp;#x7B;
+        os_name:'Intel Mac OS X 10.1'
+    &#x7D;);
+    //Not sure what the spectrum of values might be. 
+    //If you do, please let us know!
+    window.location = 'http://localhost:8080/navigator.html'
+    ...</code></pre>
+</>   
+    },{
+'name':'lang',
+'description':<>
+    <p>
+        <strong>
+             Sets value which is returned as part of
+            <code>window.navigator.userAgent</code>
+        </strong><br/>
+        <span>in Firefox on OSX this is 
+            "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.5; en-US; rv:1.9.1.2) Gecko/20090729 Firefox/3.5.2"
+        </span><br/> 
+        <em>(can be used to emulate different default lang)</em><br/>
+        <strong>default (rhino): </strong>
+        <span class='api-default-value'>
+        java.lang.System.getProperty("user.lang")
+        </span>
+    </p>
+    <pre class='box'><code>...
+    Envjs(&amp;#x7B;
+        os_name:'fr'
+    &#x7D;);
+    window.location = 'http://localhost:8080/navigator.html'
+    ...</code></pre>
+</>   
+    },{
+'name':'platform',
+'description':<>
+    <p>
+        <strong>
+             Sets value which is returned as part of
+            <code>window.navigator.platform</code>
+        </strong><br/>
+        <span>in Firefox on OSX this is 
+            "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.5; en-US; rv:1.9.1.2) Gecko/20090729 Firefox/3.5.2"
+        </span><br/> 
+        <em>(can be used to emulate different os)</em><br/>
+        <strong>default (rhino): </strong>
+        <span class='api-default-value'>
+        "Rhino"
+        </span>
+    </p>
+    <pre class='box'><code>...
+    Envjs(&amp;#x7B;
+        platform:'MacIntel'
+    &#x7D;);
+    //Not sure what the spectrum of values might be. 
+    //If you do, please let us know!
+    window.location = 'http://localhost:8080/navigator.html'
+    ...</code></pre>
+</>   
+    }],//end api options
+    'hooks': [{
+'name':'beforeScriptLoad',
+'description':<>
+    <p>
+        <strong>
+            Uses regular expression matches on script src attributes
+            and allows you to specify a function to call before the
+            matching script is loaded.
+        </strong><br/>
+        <span>
+            Very useful for setting global values that will affect the 
+            setting of the script to be loaded next.
+        </span><br/>
+        <strong>default: </strong>
+        <span class='api-default-value'>
+            none
+        </span>
     </p>
     <pre class='box'><code>...
     Envjs(&amp;#x7B;
         TODO
     &#x7D;);
-        //TODO
+    //Haven't found a real life use-case but I'm sure someone will
     ...</code></pre>
 </>   
     },{
-'option':'log',
+'name':'afterScriptLoad',
 'description':<>
     <p>
-    TODO
+        <strong>
+            Uses regular expression matches on script src attributes
+            and allows you to specify a function to call immediately 
+            after the matching script is loaded.
+        </strong><br/>
+        <span>
+            Very useful for modifying the previously loaded script,
+            for example, to attach a logger to a unit testing framework,
+            or hook some data mining up around existing functions.
+        </span><br/>
+        <strong>default: </strong>
+        <span class='api-default-value'>
+            none
+        </span>
     </p>
     <pre class='box'><code>...
     Envjs(&amp;#x7B;
-        TODO
+        afterScriptLoad:&amp;#x7B;
+            'qunit/testrunner.js': function()&amp;#x7B;
+                //hook into qunit.log
+                var count = 0;
+                QUnit.log = function(result, message)&amp;#x7B;
+                    Envjs.log('('+(count++)+')['+ 
+                        ((!!result)?'PASS':'FAIL')+']'+message);
+                &#x7D;;
+            &#x7D;
+        &#x7D;
     &#x7D;);
-        //TODO
+    //We'll now get messages from QUnit at the console!
+    window.location = 'jquery/tests/index.html'
     ...</code></pre>
 </>   
     },{
-'option':'debug',
+'name':'onScriptLoadError',
 'description':<>
     <p>
-    TODO
+        <strong>
+            Allows the user to define a single handler to be called if
+            a script tag throws an error when being evaluated for
+            the first time.
+        </strong><br/>
+        <span>
+            This is a global callback, not an event patterns so defining
+            it twice overrides the previous callback.
+        </span><br/>
+        <strong>default: </strong>
+        <span class='api-default-value'>
+            empty function 
+        </span>
     </p>
     <pre class='box'><code>...
     Envjs(&amp;#x7B;
-        TODO
+        Envjs.onScriptLoadError : function(script)&amp;#x7B;
+            Envjs.error("failed to load script \n"+script.text);    
+            ok(false, 'JSONP may have failed to '+
+                 'load correct script while running locally');
+            //allow tests to gracefully continue
+            start();
+        &#x7D;
     &#x7D;);
-        //TODO
+    //we use this here to safely continue running the scripts
+    //even though we expect this script load to fail
     ...</code></pre>
 </>   
     },{
-'option':'info',
+'name':'onInterrupt',
 'description':<>
     <p>
-    TODO
+        <strong>
+            Allows the user to define a single handler to be called when
+            the Envjs.timer routine is interupted.  Note that this is 
+            expected in most cases, such as setTimeout, and setInterval,
+            and even for Ajax, so remember onInterupt does not mean
+            an error necessarily occured.
+        </strong><br/>
+        <span>
+            This is a global callback, not an event patterns so defining
+            it twice overrides the previous callback.
+        </span><br/>
+        <strong>default: </strong>
+        <span class='api-default-value'>
+            empty function 
+        </span>
     </p>
     <pre class='box'><code>...
     Envjs(&amp;#x7B;
-        TODO
+        //allow unanticipated xhr error with no ajax.handleError 
+        //callback (eg jQuery.getScript) to exit gracefully
+        Envjs.onInterrupt = function()&amp;#x7B;
+            Envjs.info('thread interupt: gracefully continuing test');
+            start();
+        &#x7D;;
     &#x7D;);
-        //TODO
     ...</code></pre>
 </>   
-    },{
-'option':'warn',
-'description':<>
-    <p>
-    TODO
-    </p>
-    <pre class='box'><code>...
-    Envjs(&amp;#x7B;
-        TODO
-    &#x7D;);
-        //TODO
-    ...</code></pre>
-</>   
-    },{
-'option':'error',
-'description':<>
-    <p>
-    TODO
-    </p>
-    <pre class='box'><code>...
-    Envjs(&amp;#x7B;
-        TODO
-    &#x7D;);
-        //TODO
-    ...</code></pre>
-</>   
-    },{
-'option':'debugParser',
-'description':<>
-    <p>
-    TODO
-    </p>
-    <pre class='box'><code>...
-    Envjs(&amp;#x7B;
-        TODO
-    &#x7D;);
-        //TODO
-    ...</code></pre>
-</>   
-    },{
-'option':'lineSource',
-'description':<>
-    <p>
-    TODO
-    </p>
-    <pre class='box'><code>...
-    Envjs(&amp;#x7B;
-        TODO
-    &#x7D;);
-        //TODO
-    ...</code></pre>
-</>   
-    },{
-'option':'location',
-'description':<>
-    <p>
-    TODO
-    </p>
-    <pre class='box'><code>...
-    Envjs(&amp;#x7B;
-        TODO
-    &#x7D;);
-        //TODO
-    ...</code></pre>
-</>   
-    },{
-'option':'timer',
-'description':<>
-    <p>
-    TODO
-    </p>
-    <pre class='box'><code>...
-    Envjs(&amp;#x7B;
-        TODO
-    &#x7D;);
-        //TODO
-    ...</code></pre>
-</>   
-    },{
-'option':'javaEnabled',
-'description':<>
-    <p>
-    TODO
-    </p>
-    <pre class='box'><code>...
-    Envjs(&amp;#x7B;
-        TODO
-    &#x7D;);
-        //TODO
-    ...</code></pre>
-</>   
-    },{
-'option':'runAsync',
-'description':<>
-    <p>
-    TODO
-    </p>
-    <pre class='box'><code>...
-    Envjs(&amp;#x7B;
-        TODO
-    &#x7D;);
-        //TODO
-    ...</code></pre>
-</>   
-    },{
-'option':'writeToFile',
-'description':<>
-    <p>
-    TODO
-    </p>
-    <pre class='box'><code>...
-    Envjs(&amp;#x7B;
-        TODO
-    &#x7D;);
-        //TODO
-    ...</code></pre>
-</>   
-    },{
-'option':'writeToTempFile',
-'description':<>
-    <p>
-    TODO
-    </p>
-    <pre class='box'><code>...
-    Envjs(&amp;#x7B;
-        TODO
-    &#x7D;);
-        //TODO
-    ...</code></pre>
-</>   
-    },{
-'option':'deleteFile',
-'description':<>
-    <p>
-    TODO
-    </p>
-    <pre class='box'><code>...
-    Envjs(&amp;#x7B;
-        TODO
-    &#x7D;);
-        //TODO
-    ...</code></pre>
-</>   
-    },{
-'option':'connection',
-'description':<>
-    <p>
-    TODO
-    </p>
-    <pre class='box'><code>...
-    Envjs(&amp;#x7B;
-        TODO
-    &#x7D;);
-        //TODO
-    ...</code></pre>
-</>   
-    },{
-'option':'parseHTML',
-'description':<>
-    <p>
-    TODO
-    </p>
-    <pre class='box'><code>...
-    Envjs(&amp;#x7B;
-        TODO
-    &#x7D;);
-        //TODO
-    ...</code></pre>
-</>   
-    },{
-'option':'parseXML',
-'description':<>
-    <p>
-    TODO
-    </p>
-    <pre class='box'><code>...
-    Envjs(&amp;#x7B;
-        TODO
-    &#x7D;);
-        //TODO
-    ...</code></pre>
-</>   
-    },{
-'option':'xpath',
-'description':<>
-    <p>
-    TODO
-    </p>
-    <pre class='box'><code>...
-    Envjs(&amp;#x7B;
-        TODO
-    &#x7D;);
-        //TODO
-    ...</code></pre>
-</>   
-    },{
-'option':'tmpdir',
-'description':<>
-    <p>
-    TODO
-    </p>
-    <pre class='box'><code>...
-    Envjs(&amp;#x7B;
-        TODO
-    &#x7D;);
-        //TODO
-    ...</code></pre>
-</>   
-    },{
-'option':'os_name',
-'description':<>
-    <p>
-    TODO
-    </p>
-    <pre class='box'><code>...
-    Envjs(&amp;#x7B;
-        TODO
-    &#x7D;);
-        //TODO
-    ...</code></pre>
-</>   
-    },{
-'option':'os_arch',
-'description':<>
-    <p>
-    TODO
-    </p>
-    <pre class='box'><code>...
-    Envjs(&amp;#x7B;
-        TODO
-    &#x7D;);
-        //TODO
-    ...</code></pre>
-</>   
-    },{
-'option':'os_version',
+    }],//end api hooks
+    'platform': [{
+'name':'log',
 'description':<>
     <p>
     TODO
@@ -372,7 +432,7 @@
     ...</code></pre>
 </>   
     },{
-'option':'lang',
+'name':'lineSource',
 'description':<>
     <p>
     TODO
@@ -385,7 +445,7 @@
     ...</code></pre>
 </>   
     },{
-'option':'platform',
+'name':'location',
 'description':<>
     <p>
     TODO
@@ -398,7 +458,7 @@
     ...</code></pre>
 </>   
     },{
-'option':'load',
+'name':'timer',
 'description':<>
     <p>
     TODO
@@ -411,7 +471,7 @@
     ...</code></pre>
 </>   
     },{
-'option':'scriptTypes',
+'name':'javaEnabled',
 'description':<>
     <p>
     TODO
@@ -424,7 +484,7 @@
     ...</code></pre>
 </>   
     },{
-'option':'onScriptLoadError',
+'name':'runAsync',
 'description':<>
     <p>
     TODO
@@ -437,7 +497,7 @@
     ...</code></pre>
 </>   
     },{
-'option':'loadLocalScript',
+'name':'writeToFile',
 'description':<>
     <p>
     TODO
@@ -449,8 +509,111 @@
         //TODO
     ...</code></pre>
 </>   
-    }]
-	//end api options
+    },{
+'name':'writeToTempFile',
+'description':<>
+    <p>
+    TODO
+    </p>
+    <pre class='box'><code>...
+    Envjs(&amp;#x7B;
+        TODO
+    &#x7D;);
+        //TODO
+    ...</code></pre>
+</>   
+    },{
+'name':'deleteFile',
+'description':<>
+    <p>
+    TODO
+    </p>
+    <pre class='box'><code>...
+    Envjs(&amp;#x7B;
+        TODO
+    &#x7D;);
+        //TODO
+    ...</code></pre>
+</>   
+    },{
+'name':'connection',
+'description':<>
+    <p>
+    TODO
+    </p>
+    <pre class='box'><code>...
+    Envjs(&amp;#x7B;
+        TODO
+    &#x7D;);
+        //TODO
+    ...</code></pre>
+</>   
+    },{
+'name':'tidyHTML',
+'description':<>
+    <p>
+    TODO
+    </p>
+    <pre class='box'><code>...
+    Envjs(&amp;#x7B;
+        TODO
+    &#x7D;);
+        //TODO
+    ...</code></pre>
+</>   
+    },{
+'name':'parseXML',
+'description':<>
+    <p>
+    TODO
+    </p>
+    <pre class='box'><code>...
+    Envjs(&amp;#x7B;
+        TODO
+    &#x7D;);
+        //TODO
+    ...</code></pre>
+</>   
+    },{
+'name':'xpath',
+'description':<>
+    <p>
+    TODO
+    </p>
+    <pre class='box'><code>...
+    Envjs(&amp;#x7B;
+        TODO
+    &#x7D;);
+        //TODO
+    ...</code></pre>
+</>   
+    },{
+'name':'load',
+'description':<>
+    <p>
+    TODO
+    </p>
+    <pre class='box'><code>...
+    Envjs(&amp;#x7B;
+        TODO
+    &#x7D;);
+        //TODO
+    ...</code></pre>
+</>   
+    },{
+'name':'loadLocalScript',
+'description':<>
+    <p>
+    TODO
+    </p>
+    <pre class='box'><code>...
+    Envjs(&amp;#x7B;
+        TODO
+    &#x7D;);
+        //TODO
+    ...</code></pre>
+</>   
+    }]//end platform 
     }
     
 ]}
