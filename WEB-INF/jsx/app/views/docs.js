@@ -13,7 +13,8 @@
     $.extend($V.Docs.prototype, {
         render: function(model){
             log.debug("Rendering html templates "); 
-            var page = model.id?'doc':'docs';
+            var page = !model.id?'docs':
+                    (model.doc&&model.doc.id=='guide')?'guide':'api';
             this.write( $.e4x(
                 'html/pages/'+page+'.js'+(model.id?'?'+model.id:''), 
                     model, true) );

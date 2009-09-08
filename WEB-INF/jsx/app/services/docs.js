@@ -24,7 +24,7 @@
             if(id){
                 //find the docs based on the id passed
                 for(i=0;i<docs.length;i++){
-                    if(docs[i].id+'-'+docs[i].version == id){
+                    if((docs[i].id+'-'+docs[i].version) == id){
                         doc = docs[i];
 						log.debug('found doc %s', id);
                         break;

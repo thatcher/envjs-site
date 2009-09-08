@@ -8,8 +8,16 @@
                     If you have questions, need help, would like to submit a
                     bug report or small patch, or become an active contibutor  
                     of the Envjs project please join us on one of our forums.
-                    {_.paragraph()}
+                    There are many developers who have contributed, and/or,
+					who use Envjs actively.  We will always make our best effort 
+					to answer your questions as fast as possible.  
                 </p>
+				<p>
+				    Please try to read all available documentation and provide
+					as much information as relevant.  Also, try a quick search 
+					through the archives on our group list to see if anyone has 
+					had a similar question that has already been answered.
+				</p>
                 <h3>license</h3>
                 <p>
                     Envjs is currently available for use in all personal or 
@@ -28,8 +36,17 @@
                 
                 <h3>donate</h3>
                 <p>
-                    {_.paragraph()}
+                    <a href="http://pledgie.com/campaigns/3860" style='float:right;'>
+                       <img border="0" 
+                            src="http://www.pledgie.com/campaigns/3860.png?skin_name=chrome" 
+                            alt="Click here to lend your support to: env-js and make a donation at www.pledgie.com !"/>
+                    </a>
+                    Donates are graciously accepted, and though we have a low overhead
+					as we take full advantage of the services listed, we will
+					use any donated funds to promote and support Envjs.
+					
                 </p>
+				
             </div>
         </div>
         <div class="span-7 column last">

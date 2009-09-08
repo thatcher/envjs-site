@@ -34,7 +34,11 @@
                 </ul> 
             </div>
             <div class='first column span-13'>
-                <h2>options</h2>
+                <h2>
+                    <img src={$.env('root')+('images/icon-green.png')}
+                         height='30px'/>
+				    options
+				</h2>
 				<p>
 				    Envjs provides a number of basic configurable options
 					which allow users to modify the default behavior
@@ -56,8 +60,14 @@
                         ]}
                     };
                 }).e4x()}
+                </ul>
 				
-                <h2>hooks</h2>
+				
+                <h2>
+                    <img src={$.env('root')+('images/icon-green.png')}
+                         height='30px'/>
+                    hooks
+				</h2>
 				<p>
 				    Hooks allow users of Envjs to extend the usual behavior
 					at well known points, or to subscribe to internal
@@ -70,6 +80,7 @@
 					or to store state regarding the HTML applications
 					processes. 
 				</p>
+				<ul>
                 {_('.*',_$.doc.hooks).map(function(index, value){
                     return {
                         li:{$:[
@@ -79,8 +90,14 @@
                         ]}
                     };
                 }).e4x()}
+				</ul>
 				
-                <h2>platform</h2>
+				
+                <h2>
+                    <img src={$.env('root')+('images/icon-green.png')}
+                         height='30px'/>
+                    platform
+				</h2>
 				<p>
 				    Platform functions are required to be implemented by
 					authors who wish to run Envjs on additional javascript
@@ -94,6 +111,7 @@
 					Also the default implementations may be easily overridden
 					to suit the users particular needs.
 				</p>
+                <ul>
                 {_('.*',_$.doc.platform).map(function(index, value){
                     return {
                         li:{$:[

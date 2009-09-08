@@ -424,6 +424,10 @@ h1, h2, h3{
     margin:0;
 	background-color:#E5ECF9;
 }
+#doc h2{
+   border-top:none;
+   border-bottom:1px solid;
+}
 #doc p {
     margin:1em;
     padding:1em;
