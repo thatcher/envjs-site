@@ -443,6 +443,7 @@ h1, h2, h3{
 #doc .box{
 	border: 1px dashed;
 	padding:0;
+	overflow-x:auto;
 }
 #doc div ul{
     margin-right:0;

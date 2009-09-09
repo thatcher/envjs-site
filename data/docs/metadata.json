@@ -117,7 +117,7 @@
 </>
 
         }],'walking':[{
-		
+        
 'name':'load',
 'description':<>
     <p>
@@ -216,57 +216,190 @@
 'description':<>
     <p>
         Most javascript libraries provide a collection of unit tests that
-		run in the browser, and with a little tweeking Envjs can run these
-		tests in a 'headless' browser.  We use this internally as part of our
-		framework measurement for how well we are emulating the client-side
-		environment.
+        run in the browser, and with a little tweeking Envjs can run these
+        tests in a 'headless' browser.  We use this internally as part of our
+        framework measurement for how well we are emulating the client-side
+        environment.
     </p>            
     <p>
-	   In this example we provide a use case of how to run the jQuery QUnit
-	   tests after checking out the latest jquery source code.  This entire 
-	   example can be run with Envjs by executing the following command.
-	    
+       In this example we provide a use case of how to run the jQuery QUnit
+       tests after checking out the latest jquery source code.  This entire 
+       example can be run with Envjs by executing the following command.
+        
         <pre class='box'>
-	    <code>.
-	env-js $ bin/test-jquery.sh
+        <code>.
+    env-js $ bin/test-jquery.sh
         </code>    
-	    </pre>     
-    </p>	 
+        </pre>     
+    </p>     
+    <p>
+       Aside from doing a little bash scripting magic to svn up, and copying
+       env.rhino.js and env-js.jar, Envjs doesn't do anything to modify the 
+       actual html application that runs the jQuery QUnit tests.  Instead we use 
+       hooks as follows:
+       
+        <pre class='box'>
+        <code>.
+load("build/runtest/env.js");
+
+(function($env)&amp;#x7B;
+    
+    $env("test/index.html", &amp;#x7B;
+        //let it load the script from the html
+        scriptTypes: &amp;#x7B;
+            "text/javascript"   :true
+        &#x7D;,
+        //afterScriptLoad is a powerful hook to let you
+        //modify globals or methods so Envjs can 'listen'
+        //to the scripts as they run
+        afterScriptLoad:&amp;#x7B;
+            'qunit/testrunner.js': function()&amp;#x7B;
+                //hook into qunit.log so we can get
+                //updates on the console about scripts
+                //as they run
+                var count = 0;
+                QUnit.log = function(result, message)&amp;#x7B;
+                    $env.log('(' + (count++) + ')[' + 
+                        ((!!result)?'PASS':'FAIL')+'] '+message);
+                &#x7D;;
+                //hook into qunit.done
+                QUnit.done = function(pass, fail)&amp;#x7B;
+                    //when the tests are done we write out the
+                    //resulting dom to a local file so we can see the 
+                    //tests results as reported by qunit
+                    $env.warn('Writing Results to File');
+                    //we dont want the scripts to run again when we 
+                    //open the file so we change the script type
+                    jQuery('script').each(function()&amp;#x7B;
+                        this.type = 'text/envjs';
+                    &#x7D;);
+                    $env.writeToFile(
+                        document.documentElement.xml, 
+                        $env.location('jqenv-'+Date.now()+'.html')
+                    );
+                &#x7D;;
+                
+                //modify some globals already defined by qunit
+                
+                
+                //jquery to run ajax tests locally
+                isLocal = false;
+                
+                //wrap qunit start and stop so we can prevent
+                //the tests from locking up if one throws an error
+                //while stop has been called
+                var unsafeStop = stop,
+                    unsafeStart = start,
+                    isStopped = null;
+                    
+                stop = function()&amp;#x7B;
+                    if(isStopped === null || !isStopped === false)&amp;#x7B;
+                        $env.log('PAUSING QUNIT');
+                        isStopped = true;
+                        unsafeStop(arguments);
+                    &#x7D;
+                &#x7D;;
+                start = function()&amp;#x7B;
+                    if(isStopped === null || isStopped === true )&amp;#x7B;
+                        $env.log('RESTARTING QUNIT');
+                        isStopped = false;
+                        unsafeStart(arguments);
+                    &#x7D;
+                &#x7D;;
+                
+                //we know some ajax calls will fail becuase
+                //we are not running against a running server
+                //for php files
+                var handleError = jQuery.handleError;
+                jQuery.handleError = function()&amp;#x7B;
+                    ok(false, 'Ajax may have failed while running locally');
+                    try&amp;#x7B;
+                        handleError(arguments);
+                    &#x7D;catch(e)&amp;#x7B;&#x7D;
+                    //allow tests to gracefully continue
+                    start();
+                &#x7D;;
+                
+                //allow unanticipated xhr error with no ajax.handleError 
+                //callback (eg jQuery.getScript) to exit gracefully
+                $env.onInterrupt = function()&amp;#x7B;
+                    $env.info('thread interupt: gracefully continuing test');
+                    start();
+                &#x7D;;
+                $env.onScriptLoadError = function(script)&amp;#x7B;
+                    Envjs.error("failed to load script \n"+script.text);    
+                    ok(false, 'Ajax may have failed to load '+
+                       'correct script while running locally');
+                    //allow tests to gracefully continue
+                    start();
+                &#x7D;;
+            &#x7D;
+        &#x7D;
+    &#x7D;);
+    
+&#x7D;)(Envjs);
+        </code>    
+        </pre>     
+    </p>
  </>
     },{
-'name':'scripts',
+'name':'scripting',
 'description':<>      
     <p>
-	   jQuery ready method:
+       You can also simply load the javascript libraries you want
+       to use and then script away just like you would in a browser. This
+       example shows how to use jquery to check you web pages for broken
+       links and could easy be integrated into a continous testing process.
     
-	    <pre class='box'>
-	    <code>.
+        <pre class='box'>
+        <code>.
+    //load libraries
     load('env.rhino.js');
     load('jquery-1.3.2.js');
-    load('some-code-that-sets-up-jquery-onready-behaviors.js');
-    window.location = "some/file.html";
-    jQuery.ready();
-	    </code>
-	    </pre>
-	</p>
- </>
-    },{
-'name':'custom',
-'description':<>    
+    
+    //configure settings
+    Envjs(&amp;#x7B;
+       logLevel:Envjs.DEBUG
+    &#x7D;);
+    
+    //pick a html app to load
+    window.location = "http://test.example.com/some/file.html";
+    
+    //script away
+    $('a').each(function()&amp;#x7B;
+       //check all the non-local links
+       var url = $(this).attr('href'); 
+       if(!url.match('#'))&amp;#x7B;
+           var _this = this;
+           $.ajax(&amp;#x7B;
+              'type':'GET',
+              'url':url,
+              'async':false,
+              'success':function()&amp;#x7B;
+                 Envjs.debug('url was ok : '+url);
+              &#x7D;,
+              'error': function()&amp;#x7B;
+                 Envjs.error('url was broken! : '+url);
+              &#x7D;
+           &#x7D;);
+       &#x7D;
+    &#x7D;);
+        </code>
+        </pre>
+    </p> 
     <p>
-		Other JavaScript frameworks have their own methods of setup, 
-	    but the general pattern is:
-	    
-	    <pre class='box'>
-	    <code>.
+        Of course other JavaScript frameworks have their own
+        methods of setup, but the general pattern is:
+        
+        <pre class='box'>
+        <code>.
     // load env.js
-    // load your framework
-    // tell env.js the base DOM to model
-    // run any setup code for your framework
-    // tell the framework that the document is loaded
-	    </code>
-	    </pre>
-	</p>
+    // configure Envjs
+    // set window.location
+    // load and run your script
+        </code>
+        </pre>
+    </p>
 </>
         }]
     },

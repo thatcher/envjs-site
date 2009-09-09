@@ -41,10 +41,10 @@
           <param-name>dispatch-function</param-name>
           <param-value>ClaypoolServerHandler</param-value>
         </init-param>  
-        <!-- Set to true for production releases -->
+        <!-- Set to false for production releases -->
         <init-param>
           <param-name>active-reload</param-name>
-          <param-value>true</param-value>
+          <param-value>false</param-value>
         </init-param>
         <load-on-startup>2</load-on-startup>
     </servlet>  
