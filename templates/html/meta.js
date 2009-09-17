@@ -9,13 +9,15 @@
 	<meta 	content="text/html; charset=utf-8" 
 			http-equiv="Content-Type"/>
 	<meta 	name="keywords"
-			content="javascript, jquery, claypool, web, framework, application, 
-					mvc, ioc, aop, model, view, controller, filter, template, 
-					e4x, rhino, tomcat, jetty, filter, logging, server, client, 
-					inversion of control, aspect, env, config, routes, router, 
-					plug in, envjs, thatcher, resig"/>
+			content="javascript, resig, envjs, thatcher, browser, dom, window,
+                    document, firefox, internet explorer, safari, opera,
+                    testing, server side javascript, jquery, prototype,
+                    html, screen scrape, web crawler"/>
 	<meta 	name="description"
-			content="Claypool is a small, fast, railable Javascript Application Framework, built on jQuery 
-					that provides all the usual important patterns for large, long-lived client-side apps, 
-					server-side apps, or something strangely, beautifully in the middle." />
+			content="Envjs is a simulated javascript browser environment originally
+                    written by John Resig.  It provides a shell fimiliar to firebug
+                    console users, and can be used to script headless javascript 
+                    unit tests, crawl the web, or used as a basis for server-side 
+                    javascript.  The original blog post can be found here: 
+                    http://ejohn.org/blog/bringing-the-browser-to-the-server/" />
 </block>

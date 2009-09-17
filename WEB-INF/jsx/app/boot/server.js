@@ -10,8 +10,8 @@ jQuery.noConflict();
     
     //The environments are described in environments.js
     try{
- 	   $.env('defaults', "dev.server"); 
-       //$.env('defaults', "appengine.server");
+ 	   //$.env('defaults', "dev.server"); 
+       $.env('defaults', "appengine.server");
  	   
  	   //normally we'd use $.env to set some configuration
  	   //for stuff like jstorm (but this examples uses no models)
