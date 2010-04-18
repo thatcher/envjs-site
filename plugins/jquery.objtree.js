@@ -19,75 +19,59 @@
  *        For server-side xml to javascript utilities see 
  *            - ( http://github.com/thatcher/jquery-e4x ) -
  *        for xml to js plugins that are MUCH faster
- * 
- *          depends on jquery-jspath 
- *  ( http://github.com/thatcher/jquery-jspath )
  */
-(function(_){
-    _.objtree = function(opts){
+
+(function($){
+    $.objtree = function(opts){
         ObjTree.prototype.xmlDecl = opts.xmlDecl||ObjTree.prototype.xmlDecl;
         ObjTree.prototype.attr_prefix = opts.attr_prefix||ObjTree.prototype.attr_prefix;
         ObjTree.prototype.ns_colon = opts.ns_colon||ObjTree.prototype.ns_colon;
         ObjTree.prototype.mixed_content_name = opts.ns_colon||ObjTree.prototype.mixed_content_name;
     };
     
-    _.xml2js = function(xml, opts){
-        var objtree = _.extend(new ObjTree(), opts||{});
+    $.xml2js = function(xml, opts){
+        var objtree = $.extend(new ObjTree(), opts||{});
         var obj = objtree.parseXML(xml);
     };
     
-    _.dom2js = function(dom, opts){
-        var objtree = _.extend(new ObjTree(), opts||{});
+    $.dom2js = function(dom, opts){
+        var objtree = $.extend(new ObjTree(), opts||{});
         return objtree.parseDOM(dom);
     };
     
-    _.x = _.js2xml =  function(js, opts){
-        var objtree = _.extend(new ObjTree(), opts||{});
+    $.x = $.js2xml =  function(js, opts){
+        var objtree = $.extend(new ObjTree(), opts||{});
         return objtree.writeXML(js);
     };
     
-    _.fn.x = function(i){
+    $.fn.x = function(i){
         var xml = '';
         if(i && this[i]){
-            xml = _.js2xml(this[i]);
+            xml = $.js2xml(this[i]);
         }else{
             for (i = 0; i < this.length; i++) {
-                xml += _.js2xml(this[i]);
+                xml += $.js2xml(this[i]);
             }
         }
         return xml;
     };
     
-    _.fn.tmpl = function(obj){
-        var i, _this = this, tmpl = [];
-        
-        var replacer = function(o, keys){
-            var prop, keyz = keys, newobj = {};
-            for (prop in o) {
-                if (typeof(o[prop]) == 'string') {
-                    newobj[prop] = o[prop].replace(/\|\:\w+\|/g, function(){
-                        var name;
-                        name = arguments[0].substring(2, arguments[0].length - 1);
-                        return keyz&&keyz[name]?keyz[name]:'null';
-                    });
-                }else if(typeof(o[prop]) == 'object'){
-                    newobj[prop] = replacer(o[prop], keyz)
-                }
-            }
-            return newobj;
-        };
- 
-        for(i = 0;i<this.length;i++){
-            tmpl[i] = replacer(obj, this[i]);
-        }
-        return _(tmpl);
-    };
-    
-    _.escape = function(xml){
+    $.escape = function(xml){
         return ObjTree.prototype.xml_escape(xml);  
     };
     
-    
+    $.e3x = function(xml, model){
+        var t = $(xml).clone();
+        $('.e3x', t).each(function(){
+            var result,
+                e3x = $(this).text().replace('{','{__$__:');
+            with(model||{}){
+                eval('result = '+e3x);
+            }
+            $(this).html($.x(result.__$__));
+        });
+        return t;
+    };
     // ========================================================================
     //  ObjTree -- XML source code from/to JavaScript object like E4X
     // ========================================================================
@@ -239,9 +223,9 @@
         var xml="", i;
         if ( typeof(tree) == "undefined" || tree == null ) {
             xml = '';
-        } else if ( typeof(tree) == "object" && tree.constructor == Array ) {
+        } else if ( typeof(tree) == "object" &&  tree.length  ) {
             for(i=0;i<tree.length;i++){
-                xml += ''+this.writeXML(tree[i]);
+                xml += '\n'+this.writeXML(tree[i]);
             }
         } else if ( typeof(tree) == "object" ) {
             xml = this.hash_to_xml( null, tree );
@@ -271,7 +255,7 @@
             if ( key.charAt(0) != this.attr_prefix ) {
                 if ( typeof(val) == "undefined" || val == null ) {
                     elem[elem.length] = "<"+key+" />";
-                } else if ( typeof(val) == "object" && val.constructor == Array ) {
+                } else if ( typeof(val) == "object" && val.length ) {
                     elem[elem.length] = this.array_to_xml( key, val );
                 } else if ( typeof(val) == "object" ) {
                     elem[elem.length] = this.hash_to_xml( key, val );
@@ -283,7 +267,7 @@
                     //text node
                     if ( typeof(val) == "undefined" || val == null ) {
                         elem[elem.length] = " ";
-                    } else if ( typeof(val) == "object" && val.constructor == Array ) {
+                    } else if ( typeof(val) == "object" && val.length ) {
                          elem[elem.length] = this.writeXML(val);
                     } else if ( typeof(val) == "object" ) {
                         elem[elem.length] = this.hash_to_xml( key, val );
@@ -303,12 +287,12 @@
             // no tag
         } else if ( elem.length > 0 ) {
             if ( jelem.match( /\n/ )) {
-                jelem = "<"+name+jattr+">"+jelem+"</"+name+">";
+                jelem = "<"+name+jattr+">\n"+jelem+"</"+name+">\n";
             } else {
-                jelem = "<"+name+jattr+">"  +jelem+"</"+name+">";
+                jelem = "<"+name+jattr+">"  +jelem+"</"+name+">\n";
             }
         } else {
-            jelem = "<"+name+jattr+" />";
+            jelem = "<"+name+jattr+" />\n";
         }
         return jelem;
     };
@@ -343,7 +327,7 @@
             return this.xml_escape(text);
         } else {
             name = this.replaceColon(name);
-            return "<"+name+">"+this.xml_escape(text)+"</"+name+">";
+            return "<"+name+">"+this.xml_escape(text)+"</"+name+">\n";
         }
     };
     
@@ -354,4 +338,4 @@
     };
 
 
-})(jsPath);
+})(jQuery);

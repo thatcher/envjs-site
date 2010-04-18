@@ -1,0 +1,46 @@
+{{ extend $.env( "templates" ) + "html/base.tmpl" }}
+{{ block main }}
+<div id='docs'>
+    <h3>documentation</h3>
+    <div class='first column span-11 colborder '>
+        <ul>
+        
+            {{ each docs }}
+            {{ if $i % 2 === 0 }}
+            <li>
+                <a href='${ $.env("root")+"doc/"+this.id+"/"+this.version }' >
+                    <strong> ${ this.label } </strong>
+                    <em> ${ this.version } </em>
+                    <img
+                        src=' ${ $.env("root")+"images/icon-green.png" }'
+                        alt='${ this.label }'
+                        height='50px'
+                    />
+                </a>
+            </li>
+            {{ /if }}
+            {{ /each }}
+            
+        </ul>
+    </div>
+    <div class=' last column  span-10'>
+        <ul>
+            {{ each docs }}
+            {{ if $i % 2 === 1 }}
+            <li>
+                <a href='${ $.env("root")+"doc/"+this.id+"/"+this.version }' >
+                    <img
+                        src=' ${ $.env("root")+"images/icon-brown.png" }'
+                        alt='${ this.label }'
+                        height='50px'
+                    />
+                    <strong> ${ this.label } </strong>
+                    <em> ${ this.version } </em>
+                </a>
+            </li>
+            {{ /if }}
+            {{ /each }}
+        </ul>
+    </div>
+</div>
+{{ /block }}

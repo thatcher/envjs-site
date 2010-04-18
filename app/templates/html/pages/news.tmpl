@@ -1,0 +1,16 @@
+{{ extend $.env( "templates" ) + "html/base.tmpl" }}
+{{ block main }}
+<div id='news' >
+    <h3>news archives</h3>
+    {{ each news }}
+    <div class='span-20 prepend-1'>
+		<div class='span-12 column noborder'>
+			{{ html this.description }}
+		</div>
+        <div class='span-6 column noborder'>
+			<h4> ${ this.title } </h4>
+		</div>
+    </div>
+    {{ /each }}
+</div>
+{{ /block }}

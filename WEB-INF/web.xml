@@ -27,67 +27,51 @@
 	   jquery-claypool.
     -->
     <servlet>
-        <servlet-name>rhino-dispatcher</servlet-name>
-        <servlet-class>claypool.server.Servlet</servlet-class>    
-        <init-param>
-          <param-name>script-base</param-name>
-          <param-value>/WEB-INF/jsx/</param-value>
-        </init-param> 
-        <init-param>
-          <param-name>shell</param-name>
-          <param-value>shell.js</param-value>
-        </init-param>   
+        <servlet-name>dispatcher</servlet-name>
+        <servlet-class>claypool.server.Servlet</servlet-class>  
         <init-param>
           <param-name>dispatch-function</param-name>
           <param-value>ClaypoolServerHandler</param-value>
         </init-param>  
         <!-- Set to false for production releases -->
-        <init-param>
-          <param-name>active-reload</param-name>
-          <param-value>false</param-value>
-        </init-param>
         <load-on-startup>2</load-on-startup>
     </servlet>  
 	
 	<!-- jsx urls are routed to the dynamic service -->
     <servlet-mapping>
-        <servlet-name>rhino-dispatcher</servlet-name>
-        <url-pattern>/jsx/</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>rhino-dispatcher</servlet-name>
+        <servlet-name>dispatcher</servlet-name>
         <url-pattern>/home</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>rhino-dispatcher</servlet-name>
+        <servlet-name>dispatcher</servlet-name>
         <url-pattern>/docs</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>rhino-dispatcher</servlet-name>
+        <servlet-name>dispatcher</servlet-name>
         <url-pattern>/doc/*</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>rhino-dispatcher</servlet-name>
+        <servlet-name>dispatcher</servlet-name>
         <url-pattern>/support</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>rhino-dispatcher</servlet-name>
+        <servlet-name>dispatcher</servlet-name>
         <url-pattern>/error</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>rhino-dispatcher</servlet-name>
+        <servlet-name>dispatcher</servlet-name>
         <url-pattern>/events</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>rhino-dispatcher</servlet-name>
+        <servlet-name>dispatcher</servlet-name>
         <url-pattern>/news</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>rhino-dispatcher</servlet-name>
+        <servlet-name>dispatcher</servlet-name>
         <url-pattern>/releases</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>rhino-dispatcher</servlet-name>
+        <servlet-name>dispatcher</servlet-name>
         <url-pattern>/release/*</url-pattern> 
     </servlet-mapping>
     
@@ -96,9 +80,9 @@
 	    <session-timeout>30</session-timeout>
     </session-config>
 	
-	<!-- The index.jsp file simply re-routes to our jquery-claypool welcome page s-->
+	<!-- The root.jsp file forwards requests to / to /home/-->
     <welcome-file-list>
-        <welcome-file>index.jsp</welcome-file>
+        <welcome-file>WEB-INF/forward.jsp</welcome-file>
     </welcome-file-list>
 	
 	<!--
