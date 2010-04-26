@@ -206,6 +206,7 @@ try{\n\
 _.data = null;\n\
 return T.join('\\n')";
         
+        
         //provide some feedback if they are in tmpl.debug mode
         if (jQuery.tmpl.debug)
             console.log('Generated Function: \n', fnstring);

@@ -51,6 +51,7 @@ try{
         __arguments__ = [];
         window['server-side'] = true;
         window.location = cwd+'/index.html';
+        Envjs.wait();
     }else{
         __arguments__ = arguments;
         window['client-side'] = true;

@@ -9,19 +9,19 @@
     <div class=' column span-4 colborder'>
 	    <h4>options</h4>
         <ul>
-        {{ each doc.options }}
+        {{ each _(api).where("page", "options") }}
             <li><a href='${ "#"+this.name }'> ${ this.name } </a></li>
         {{ /each }}
         </ul> 
         <h4>hooks</h4>
         <ul>
-        {{ each doc.hooks }}
+        {{ each _(api).where("page", "hooks") }}
             <li><a href='${ "#"+this.name }'> ${ this.name } </a></li>
         {{ /each }}
         </ul> 
         <h4>platform</h4>
         <ul>
-        {{ each doc.platform }}
+        {{ each _(api).where("page", "platform") }}
             <li><a href='${ "#"+this.name }'> ${ this.name } </a></li>
         {{ /each }}
         </ul> 
@@ -44,7 +44,7 @@
 			effectively replace the default value.
 		</p>
         <ul>
-        {{ each doc.options }}
+        {{ each _(api).where("page", "options") }}
             <li>
                 <hr id='${ this.name }'/>
                 <h3>${ this.name }</h3>
@@ -72,7 +72,7 @@
 			processes. 
 		</p>
 		<ul>
-        {{ each doc.hooks }}
+        {{ each _(api).where("page", "hooks") }}
             <li>
                 <hr id='${ this.name }'/>
                 <h3>${ this.name }</h3>
@@ -101,7 +101,7 @@
 			to suit the users particular needs.
 		</p>
         <ul>
-        {{ each doc.platform }}
+        {{ each _(api).where("page", "platform") }}
             <li>
                 <hr id='${ this.name }'/>
                 <h3>${ this.name }</h3>
@@ -112,23 +112,22 @@
     </div>
     <div class='last column span-4'>
         <h4>
-            <strong>${ doc.label + " " + doc.version }</strong>
+            <strong>API ${ this.id }</strong>
         </h4>
-        <img src='${ $.env( "root" ) + 
-           ( doc.id == "api" ? 
-                "images/icon-green.png" : 
-                "images/icon-brown.png" )}' 
-             alt='${ doc.label }'
+        <img src='${ $.env( "root" ) + "images/icon-green.png" }' 
+             alt='API ${ this.id }'
              height='150px'/>
+             
         <strong>releases</strong>
         <ul>
-            {{ each releases }}
+            {{ each versions }}
             <li>
-                <a href='${ $.env( "root" ) + "doc/" + doc.id + "/" + this.id }'>
+                
+                <a href='${ $.env( "root" ) + "doc/api/" + this.$id.replace("envjs-","") }'>
                     ${ this.name }
                 </a> |
-                <a href='${ $.env( "root" ) + "release/" + this.id }'>
-                    ${ this.id }
+                <a href='${ $.env( "root" ) + "release/" + this.$id }'>
+                    ${ this.$id }
                 </a>
              </li>
             {{ /each }}

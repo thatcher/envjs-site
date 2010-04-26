@@ -20,3 +20,13 @@
 		media="screen, projection"
 		rel="stylesheet" />
  <![endif]-->
+ 
+ {{ if "admin" in this }}
+<link   href='${ $.env("root")+"css/sprite.css" }'   
+        type="text/css" 
+        media="screen, projection"
+        rel="stylesheet" />
+<link   href='${ $.env("root")+"css/site-admin.css" }' 
+        type="text/css" 
+        rel="stylesheet" />
+ {{ /if }}

@@ -10,17 +10,20 @@
 	    defaults:{
             root:'/',
 			templates:'http://localhost:8080/app/templates/',
-            data:'data/'
+            data:'data/',
+            db:'jQuery.gdb',
+            dbclient:'direct',
+            dbconnection:{'default':{
+
+            }}
 	    },
 	    //------------------------------------------------------------//
 	    //  -   APPENGINE CONFIGURATION   -
 	    //____________________________________________________________//
 	    appengine:{
 	        server:{
-                root:'/',
-				monitorTemplates:'false',
-	            templates:'http://env-js.appspot.com/app/templates/',
-	            data:'http://env-js.appspot.com/data/'
+	            templates:'http://4.latest.env-js.appspot.com/app/templates/',
+	            data:'http://4.latest.env-js.appspot.com/data/'
 	        }
 	    },
 	    //------------------------------------------------------------//

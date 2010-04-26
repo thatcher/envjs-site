@@ -222,7 +222,7 @@
                         if(id === undefined){
                             log.warn("no id specified!!");
                             try{
-                                log.warn('%s',jsPath.js2json(options.data[i], null, '\t'));
+                                log.warn('%s',$.js2json(options.data[i], null, '\t'));
                             }catch(e){}
                             id = 'gdb_'+$.uuid();
                         }
@@ -360,7 +360,7 @@
                 log.debug('getting /|:%s|/|:%s|', options.domain, options.id);
                 key = $G.KeyFactory.createKey(options.domain, options.id);
                 entity = this.entityManager.get(key);
-                if(options.data !== undefined && options.length > 0){
+                if(options.data !== undefined && options.data.length > 0){
                     props = options.data;
                 }else{
                     props = entity.getProperties().keySet().toArray();
@@ -388,7 +388,7 @@
                 log.debug('found %s items by id', results.length);
                 list = []
                 for(i=0;i<keys.length;i++){
-                    if(options.data !== undefined && options.length > 0){
+                    if(options.data !== undefined && options.data.length > 0){
                         props = options.data;
                     }else{
                         props = results.get(keys[i]).getProperties().keySet().toArray();
@@ -406,7 +406,7 @@
                     data:       list
                 });
             }else{
-                log.warn('invalid options %s', jsPath.js2json(options,null,4));
+                log.warn('invalid options %s', $.js2json(options,null,4));
             }
         },
         /**
@@ -418,6 +418,7 @@
                 ors,
                 results,
                 data,
+                props,
                 i;
             //requires options.select
             data = [];
@@ -431,7 +432,8 @@
                         replace('$GREATER_THAN', '$G.Query.FilterOperator.GREATER_THAN','g').
                         replace('$LESS_THAN_OR_EQUAL', '$G.Query.FilterOperator.LESS_THAN_OR_EQUAL','g').
                         replace('$LESS_THAN', '$G.Query.FilterOperator.LESS_THAN','g').
-                        replace('$EQUAL', '$G.Query.FilterOperator.EQUAL','g');
+                        replace('$EQUAL', '$G.Query.FilterOperator.EQUAL','g').
+                        replace('$IN', '$G.Query.FilterOperator.IN','g');
                 }
                 log.debug('find native:\n\t %s', select);
                 results = this.entityManager.
@@ -442,7 +444,12 @@
                 while(results.hasNext()){
                     log.debug('result %s', i);
                     entity = results.next();
-                    data.push(entity2js(entity));
+                    if(i===0){
+                        if(options.data !== undefined && options.data.length > 0){
+                            props = options.data;
+                        }
+                    }
+                    data.push(entity2js(entity, props));
                     i++;
                 }
             }

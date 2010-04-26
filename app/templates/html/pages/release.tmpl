@@ -5,29 +5,29 @@
     <div class='first column span-5 colborder'>
         <h4>${ release.name }</h4>
         <h5>
-            <a href='${ $.env("root") + "doc/guide/" + release.id }'>
+            <a href='${ $.env("root") + "doc/guide/" + release.$id.replace("envjs-","") }'>
                 Getting Started
             </a>
         </h5>
         <h5>
-            <a href='${ $.env("root") + "doc/api/" + release.id }'>
+            <a href='${ $.env("root") + "doc/api/" + release.$id.replace("envjs-","") }'>
                 API
             </a>
         </h5>
         <em>Release</em><br/>
-        <span>Envjs ${ release.id }</span> 
+        <span>Envjs ${ release.$id }</span> 
     </div>
      
     <div id='cover' 
          class='column span-6 colborder'>
-            <a href='${ this.zip }'>
+            <a href='${ release.zip }'>
                 <img 
                     src='${ $.env("root") + "images/zip.jpg" }'
                     alt='zip'
                     height='70px'
                 />
             </a>
-            <a href='${ this.tar }'>
+            <a href='${ release.tar }'>
                 <img 
                     src='${ $.env("root") + "images/tar.jpg" }'
                     alt='tar'
@@ -38,7 +38,7 @@
     <div id='media' 
          class='column span-9'>
         <ol class='clear'>
-            {{ each release.artifacts }}
+            {{ each distributables }}
             <li>
                 <a href='${ this.url }'>
                     ${ this.label }
@@ -54,7 +54,7 @@
             {{ html release.description }}
             <div class='column'>
                 <h5>
-                    <a href='${ release.README }' target='_blank'>
+                    <a href='${ release.readme }' target='_blank'>
                         README
                     </a>
                 </h5>

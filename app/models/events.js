@@ -3,40 +3,100 @@
  */
 (function($, $M){ 
     
-    var data,
+    var data,// the currently cached data
         log;
     
     $M.Events = function(options){
-        $.extend(true, this, options);
+        $.extend(true, this, options, $.model('events', {
+            $id:{
+                not:[null],
+                msg:'please provide an id'
+            },
+            title:{
+                pattern:/^.{1,64}$/,
+                not:[null],
+                msg:'please provide a brief title'
+            },
+            date:{
+                pattern:/^.{1,64}$/,
+                not:[null],
+                msg:'what is the date of this event'
+            },
+            location:{
+                pattern:/^.{1,256}$/,
+                not:[null],
+                msg:'where will this event be held?'
+            },
+            image:{
+                pattern:/^.{1,256}$/,
+                not:[null],
+                msg:'you may provide an image ( absolute )'
+            },
+            description:{
+                pattern:/.{1,1024}/,
+                not:[null],
+                msg:'description is not required but must be a valid string, upto\
+                    1024 characters long'
+            },
+            deleted:{
+                pattern:/^[0-9]{1,32}$/,
+                msg:'timestamp when record was removed'
+            }
+        }));
+        data = [];
         log = $.logger('EnvJS.Models.Events');
     };
     
-    $.extend($M.Events.prototype,{
-        get: function(){
-            var url = $.env('data')+'events/metadata.json';
-            if(!data){
-                $.ajax({
-                    type:'GET',
-                    url:url,
-                    dataType:'text',
-                    async:false,
-                    success: function(json){
-                        log.debug('Loaded data %s',json); 
-                        data = $.json2js(json)._;
-                    },
-                    error:function(xhr, status, e){
-                        log.error('failed to load data %s',url).
-                            exception(e);
-                    }
-                });
-            }
-            return data;
+    $.extend( $M.Events.prototype, {
+        all:function(callback){
+            var _this = this;
+            this.find({
+                async:false,
+                select:"new Query('events')",
+                success:function(results){
+                    log.debug('loaded all %s events', results.data.length );
+                    callback(results.data.reverse());
+                },
+                error: function(xhr, status, e){
+                    log.error('failed to load all events.', e);
+                    callback([_this.template({$id:'404'})]);
+                }
+            });
         },
-        recent: function(){
-            var events = this.get(); 
-            return  events.slice(0,events.length>2?3:events.length);
+        current:function(callback){
+            var _this = this;
+            this.find({
+                async:false,
+                select:"new Query('events').addFilter('deleted', $EQUAL, '')",
+                success:function(results){
+                    log.debug('loaded all %s events', results.data.length );
+                    callback(results.data.reverse());
+                },
+                error: function(xhr, status, e){
+                    log.error('failed to load all events.', e);
+                    callback([_this.template({$id:'404'})]);
+                }
+            });
+        },
+        recent:function(count, callback){
+            this.current(function(results){
+                callback(results.slice(0,
+                    results.length > (count-1) ? count : results.length));
+            });
+        },
+        template: function(options){
+            return $.extend(true, {
+                $id:            $.uuid(),
+                title:          $.title(3, false),
+                date:           new Date()+'',
+                location:       $.words(5, false),
+                description:    $.sentence(),
+                image:          'error/thumb.jpg',
+                deleted:        ''
+            }, options );
         }
     });
+    
     
 })(jQuery, EnvJS.Models);
  

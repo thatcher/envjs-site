@@ -9,19 +9,19 @@
     <div class=' column span-4 colborder'>
         <h4>running</h4>
         <ul>
-        {{ each doc.running }}
+        {{ each _(guide).where("page", "running") }}
             <li><a href='${ "#"+this.name }'> ${ this.name } </a></li>
         {{ /each }}
         </ul> 
         <h4>walking</h4>
         <ul>
-        {{ each doc.walking }}
+        {{ each _(guide).where("page", "walking") }}
             <li><a href='${ "#"+this.name }'> ${ this.name } </a></li>
         {{ /each }}
         </ul> 
         <h4>crawling</h4>
         <ul>
-        {{ each doc.crawling }}
+        {{ each _(guide).where("page", "crawling") }}
             <li><a href='${ "#"+this.name }'> ${ this.name } </a></li>
         {{ /each }}
         </ul> 
@@ -52,7 +52,7 @@
 			"javascript file" is the path to the JavaScript you wish to execute.
 		</p>
         <ul>
-        {{ each doc.running }}
+        {{ each _(guide).where("page", "running") }}
             <li>
                 <hr id='${ this.name }'/>
                 <h3>${ this.name }</h3>
@@ -75,7 +75,7 @@
 			configure, and go.
         </p>
         <ul>
-        {{ each doc.walking }}
+        {{ each _(guide).where("page", "walking") }}
             <li>
                 <hr id='${ this.name }'/>
                 <h3>${ this.name }</h3>
@@ -84,7 +84,7 @@
         {{ /each }}
         </ul>
 	    <p>
-	       See the <a href='${ $.env( "root" ) + "api/" + doc.version }'>API</a>
+	       See the <a href='${ $.env( "root" ) + "api/" + this.id }'>API</a>
 		   reference for a complete list of options and their meaning.
 	    </p>
 		
@@ -108,7 +108,7 @@
 			with Envjs script loading hooks or with pure javascript.
 		</p>
         <ul>
-        {{ each doc.crawling }}
+        {{ each _(guide).where("page", "crawling") }}
             <li>
                 <hr id='${ this.name }'/>
                 <h3>${ this.name }</h3>
@@ -119,23 +119,21 @@
     </div>
     <div class='last column span-4'>
         <h4>
-            <strong>${ doc.label + " " + doc.version }</strong>
+            <strong>Guide ${ this.id }</strong>
         </h4>
-        <img src='${ $.env( "root" ) + 
-           ( doc.id == "guide" ? 
-                "images/icon-green.png" : 
-                "images/icon-brown.png" )}' 
-             alt='${ doc.label }'
+        <img src='${ $.env( "root" ) + "images/icon-brown.png" }' 
+             alt='Guide ${ this.id }'
              height='150px'/>
+             
         <strong>releases</strong>
         <ul>
-            {{ each releases }}
+            {{ each versions }}
             <li>
-                <a href='${ $.env( "root" ) + "doc/" + doc.id + "/" + this.id }'>
+                <a href='${ $.env( "root" ) + "doc/guide/" + this.$id.replace("envjs-","") }'>
                     ${ this.name }
                 </a> |
-                <a href='${ $.env( "root" ) + "release/" + this.id }'>
-                    ${ this.id }
+                <a href='${ $.env( "root" ) + "release/" + this.$id }'>
+                    ${ this.$id }
                 </a>
              </li>
             {{ /each }}

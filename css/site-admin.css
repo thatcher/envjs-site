@@ -1,0 +1,36 @@
+
+ /****************************
+ * 
+ * #admin forms
+ * 
+ * */
+body #main form input{
+    background-color:#000;
+    color:#FFF;
+    margin:1px;
+}
+
+body #main form .ss_sprite{
+    color:#567;
+}
+body #main form .ss_sprite a{
+    font-size:10px;
+    color:#567;
+}
+
+#main form textarea{
+    background-color:#000;
+    color:#FFF;
+    margin:0;
+    border:none;
+    font-family:Verdana,Geneva,Arial,Helvetica,sans-serif;
+    font-size:12px;
+    width:100%;
+}
+
+#main form input.submit{
+    border: 1px dotted #fff;
+    float:right;
+}
+
+

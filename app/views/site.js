@@ -35,4 +35,14 @@
         }
     });
     
+    $.tmpl.filters.fn.extend({
+        where: function(name, value){
+            return this.map(function(){
+                if(name in this && this[name] === value){
+                    return this;
+                }
+            });
+        }
+    });
+    
 })(jQuery, EnvJS.Views);

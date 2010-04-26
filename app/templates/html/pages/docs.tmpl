@@ -2,45 +2,38 @@
 {{ block main }}
 <div id='docs'>
     <h3>documentation</h3>
+    {{ each versions }}
+    <h4 style='text-align:center'>${ this.name }</h4>
     <div class='first column span-11 colborder '>
         <ul>
-        
-            {{ each docs }}
-            {{ if $i % 2 === 0 }}
             <li>
-                <a href='${ $.env("root")+"doc/"+this.id+"/"+this.version }' >
-                    <strong> ${ this.label } </strong>
-                    <em> ${ this.version } </em>
+                <a href='${ $.env("root")+"doc/guide/"+this.$id.replace("envjs-","") }' >
+                    <em> ${ this.$id } </em>
+                    <strong> Guide </strong>
                     <img
                         src=' ${ $.env("root")+"images/icon-green.png" }'
-                        alt='${ this.label }'
+                        alt='Guide ${ this.$id }'
                         height='50px'
                     />
                 </a>
             </li>
-            {{ /if }}
-            {{ /each }}
-            
         </ul>
     </div>
     <div class=' last column  span-10'>
         <ul>
-            {{ each docs }}
-            {{ if $i % 2 === 1 }}
             <li>
-                <a href='${ $.env("root")+"doc/"+this.id+"/"+this.version }' >
+                <a href='${ $.env("root")+"doc/api/"+this.$id.replace("envjs-","") }' >
                     <img
                         src=' ${ $.env("root")+"images/icon-brown.png" }'
-                        alt='${ this.label }'
+                        alt='API ${ this.$id }'
                         height='50px'
                     />
-                    <strong> ${ this.label } </strong>
-                    <em> ${ this.version } </em>
+                    <em> ${ this.$id } </em>
+                    <strong> API </strong>
                 </a>
             </li>
-            {{ /if }}
-            {{ /each }}
         </ul>
     </div>
+    {{ /each }}
 </div>
 {{ /block }}

@@ -9,12 +9,15 @@
         { category:"EnvJS.Models",                  level:"INFO" },
         { category:"EnvJS.Views",                   level:"INFO" },
         { category:"EnvJS.Controllers",             level:"INFO" },
-        { category:"EnvJS.Services",                level:"DEBUG" },
-        { category:"Claypool.Router",               level:"WARN" },
+        { category:"EnvJS.Services",                level:"INFO" },
+        { category:"Claypool.Models",               level:"DEBUG" },
+        { category:"Claypool.Router",               level:"DEBUG" },
         { category:"Claypool.MVC",                  level:"WARN" },
+        { category:"Claypool",                      level:"WARN" },
+        { category:"jQuery",                        level:"DEBUG" },
         { category:"root",                          level:"WARN" }
     ]);     
 	
-    jQuery.tmpl.debug = false;
+    jQuery.tmpl.debug = true;
     
 })(jQuery);

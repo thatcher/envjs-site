@@ -1,9 +1,7 @@
 body {
     border: 1px #000;
     padding: 0;
-    margin-top:1em;
-    margin-bottom:3em;
-    background-color:#242479;
+    background-color:#012;/*#242479;*/
     font-family:Verdana, Geneva, Arial, Helvetica, sans-serif;
 }
 body strong{
@@ -23,13 +21,22 @@ body form input{
 }
 h1, h2, h3, h4, h5, h6 {
     font-weight:normal;
+    color:#1E5F00;/*#25823D;*/
+    
 }
 h1, h2, h3{
-    margin:0 0 1em 1em;
-    border-top:1px solid;
+    margin:0 0 10px 10px;
+}
+a{
+    
+    color:#012;
+   text-decoration:none;
+   border-bottom:1px dashed ;
 }
 
-
+a:hover{
+    color: #1E5F00;
+}
 
 
 
@@ -39,14 +46,9 @@ h1, h2, h3{
 
 
 
-#header{
-    border-top:1px solid ;
-    border-left:1px solid ;
-    border-right:1px solid ;
-}
 #header div {
     margin-bottom:0px;
-    padding:1em;
+    padding:20px 0 0 40px;
 }
 #header a {
     border:none;
@@ -69,7 +71,7 @@ h1, h2, h3{
 #global-nav ul{
     float:right;
     margin-bottom:0px;
-    margin-right:5px;
+    margin-right:45px;
 }
 
 #global-nav ul li{
@@ -117,10 +119,9 @@ h1, h2, h3{
     border:none;
 }
 #welcome p{
-    border:1px solid;
-    font-size:0.8em;
+    font-size:10px;
     text-transform:uppercase;
-    margin:0.5em 14em 3em;
+    margin: -50px 0 20px 120px;
     font-family:"Arial Rounded MT Bold";
     
 }
@@ -141,16 +142,10 @@ h1, h2, h3{
 
 
 #recentnews {
-    margin:1em;
-    border:1px solid;
     margin-top:0;
 }
-#recentnews{
-    border:none;
-}
-#recentnews p {
-    margin:0.5em 1em 0.5em 6em;
-    padding:0.5em 1em;
+#recentnews h3{
+    margin-left:20px;
 }
 #recentnews ul {
     list-style:none;
@@ -158,13 +153,9 @@ h1, h2, h3{
 }
 #recentnews ul li h4{
     text-align:right;
-    margin-right:2em;
-    margin-left:6em;
-    border-bottom:1px dashed;
 }
 
 #recentnews img{
-    border:1px dotted;
 	margin:0 15px;
 	padding:3px;
 }
@@ -180,13 +171,10 @@ h1, h2, h3{
 }
 #recentnews a{
    text-decoration:none;
-   border-bottom:1px dashed;
    margin:1em;
    float:right;
 }
-#recentnews a:hover{
-   border-bottom:1px dashed;
-}
+
 
 
 
@@ -197,12 +185,8 @@ h1, h2, h3{
 
 
 #newreleases{
+    text-align:center;
     margin:1em;
-    border:1px dotted;
-}
-#newreleases h3{
-   margin:1em 0 0 1em;
-   border:none;
 }
 #newreleases h3 a{
    text-decoration:none;
@@ -212,7 +196,6 @@ h1, h2, h3{
     display:inline;
 }
 #newreleases ul li img{
-    border:1px dashed;
     float:right;
     margin:1em;
     padding:0.5em;
@@ -231,8 +214,8 @@ h1, h2, h3{
  * 
  * */
 #upcomingevents{
+    text-align:center;
     margin:1em;
-    border:1px dotted;
 }
 #upcomingevents h3{
     border:none;
@@ -250,11 +233,9 @@ h1, h2, h3{
     text-align:center;
 }
 #upcomingevents ul li img{
-    border:1px dashed;
     padding:1em;
 }
 #upcomingevents ul li img:hover{
-    border:1px dashed;
 }
 #upcomingevents ul li h6{
     margin-bottom:5px;
@@ -332,7 +313,6 @@ h1, h2, h3{
 }
 
 #release div.box{
-    border: 1px dashed;
     padding:0.5em;
     float:left;
 }
@@ -345,7 +325,6 @@ h1, h2, h3{
     padding:0.1em;
 }
 #release a{
-    border-bottom:1px dashed;
     text-decoration:none;
 }
 
@@ -368,7 +347,6 @@ h1, h2, h3{
     /*border:1px dotted #888;*/ 
 }
 #docs h3{
-   border-top:1px dotted;
    margin:0 1em 1em 1em;
 }
 #docs div{
@@ -393,7 +371,7 @@ h1, h2, h3{
     text-align: left;
 }
 #docs ul li img{
-    border:2px dotted;
+    border:2px dotted #999;
     padding:1em;
     margin:0.5em 0.5em 0 0.5em;
 }
@@ -402,7 +380,7 @@ h1, h2, h3{
 }
 #docs ul li:hover{
     padding:0px;
-    border:1px dashed;
+    border:1px dashed #999;
 }
 
 
@@ -472,14 +450,17 @@ h1, h2, h3{
  * 
  * */
 #contact{
-    margin:0 1em 1em 1em;
+    margin:20px 1em;
 }
 #contact h3{
-   border-top:1px dotted ;
    margin:0 1em 1em 1em;
+   text-align: right;
 }
 #contact div{
    margin:1em 0 0 1em;
+}
+#contact p{
+   text-align:right;
 }
 #contact  a{
    text-decoration:none;
@@ -489,7 +470,6 @@ h1, h2, h3{
 
 #mailing_list{
     margin:1em;
-    border:1px dotted ;
     padding-bottom:1em;
 }
 #mailing_list h3{
@@ -511,10 +491,6 @@ h1, h2, h3{
    margin:2em;
    width:100%;
 }
-#mailing_list  a{
-   text-decoration:none;
-   border-bottom:1px dashed ;
-}
 
 
 /****************************
@@ -526,16 +502,15 @@ h1, h2, h3{
     margin:0 1em 0 1em;
 }
 #events h3{
-   border-top:1px dotted ;
    margin:0 1em 1em 1em;
 }
 #events div{
    margin:1em 0 0 1em;
+   text-align:center;
 }
 #events img{
     margin-top:1em;
     padding:1em;
-    border:1px dashed ;
 }
 #events  a{
    text-decoration:none;
@@ -560,29 +535,16 @@ h1, h2, h3{
  * #news (archive)
  * 
  * */
-#news{
-    margin:0 1em 0 1em;
-}
 #news h3{
-   border-top:1px dotted;
    margin:0 1em 1em 1em;
 }
 #news h4{
    margin:1em 1em 1em 1em;
-   border-bottom:1px dashed;
-}
-#news strong{
-   margin:1em 1em 1em 1em;
-}
-#news div{
-   margin:1em 0 0 1em;
-   border:1px dotted;
 }
 #news div.noborder{
    border:none;
 }
 #news img{
-    border:1px dotted;
 	margin:0 15px 15px 15px;
 	padding:3px;
 }
@@ -604,7 +566,8 @@ h1, h2, h3{
 }
 #footer div{
     margin-top:0px;
-    padding:1em;
+    padding-bottom:2px;
+    padding-left:12px;
 }
 
 

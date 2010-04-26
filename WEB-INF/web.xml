@@ -14,7 +14,7 @@
         <servlet-class>claypool.server.Log4jInit</servlet-class>
         <init-param>
           <param-name>log4j-init-file</param-name>
-          <param-value>WEB-INF/logging.conf</param-value>
+          <param-value>/WEB-INF/logging.conf</param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
@@ -36,8 +36,34 @@
         <!-- Set to false for production releases -->
         <load-on-startup>2</load-on-startup>
     </servlet>  
-	
-	<!-- jsx urls are routed to the dynamic service -->
+    
+	<!-- privileged urls -->
+    <servlet-mapping>
+        <servlet-name>dispatcher</servlet-name>
+        <url-pattern>/rest/</url-pattern> 
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>dispatcher</servlet-name>
+        <url-pattern>/rest/*</url-pattern> 
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>dispatcher</servlet-name>
+        <url-pattern>/admin</url-pattern> 
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>dispatcher</servlet-name>
+        <url-pattern>/admin/*</url-pattern> 
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>dispatcher</servlet-name>
+        <url-pattern>/manage</url-pattern> 
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>dispatcher</servlet-name>
+        <url-pattern>/manage/*</url-pattern> 
+    </servlet-mapping>
+    
+	<!-- unprivledged urls -->
     <servlet-mapping>
         <servlet-name>dispatcher</servlet-name>
         <url-pattern>/home</url-pattern>

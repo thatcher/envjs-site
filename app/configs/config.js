@@ -8,15 +8,15 @@ var EnvJS = {
 	Models:{},
 	Views:{},
 	Controllers:{},
-	Services:{},
-    Metadata:{}
+	Services:{}
 };
 (function($){
  	
     $.scan([
         "EnvJS.Models", 
         "EnvJS.Views", 
-        "EnvJS.Services"
+        "EnvJS.Services",
+        "GAE.Services"
     ]);
     
 })(jQuery);
