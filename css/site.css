@@ -20,7 +20,7 @@ body form input{
    margin:1em;
 }
 h1, h2, h3, h4, h5, h6 {
-    font-weight:normal;
+    font-weight: bold;
     color:#1E5F00;/*#25823D;*/
     
 }
@@ -254,32 +254,24 @@ a:hover{
     margin:0 1em 1em 1em;
 }
 #releases div{
-   margin:1em 0 0 1em;
+   margin:1em 0 1em 1em;
+   text-align:right;
 }
 #releases p {
-    margin:1em;
-    padding:1em;
+    text-align:left;
+    margin: 0 1em;
+    padding:0;
 }
 #releases ul {
     list-style:none;
     display:inline;
+    margin:0;
 }
 #releases ul li {
-    margin:1em;
+    margin:0;
 }
-#releases ul li img{
-    border:  1px dotted;
-    padding:1em;
-    margin:1em;
-}
-#releases ul li img:hover{
-    border:1px dashed;
-    padding:1em;
-    margin:1em;
-}
-#releases ul li h6{
-    text-align:right;
-    margin-top:-35px;
+#releases h4{
+    text-align:center;
 }
 
 
@@ -391,6 +383,12 @@ a:hover{
  * #doc
  * 
  * */
+#table_of_contents{
+    text-align: right;
+}
+#doc #versions ul{
+    margin: 0;
+}
 #doc{
     margin:0 1em 1em 1em;
 }
@@ -401,9 +399,7 @@ a:hover{
 	text-transform:none;
 }
 #doc div h3 {
-    border:1px dotted;
-    margin:0;
-	background-color:#E5ECF9;
+    
 }
 #doc h2{
    border-top:none;
@@ -416,15 +412,18 @@ a:hover{
 #doc div.first{
     text-align:left;
 }
-#doc div.last{
-    border:1px dotted;
+#doc #versions{
+    float:right;
+    margin-right:1em;
 	padding:1em;
 	text-align:center;
 }
 #doc .box{
-	border: 1px dashed;
-	padding:0;
+	padding:10px;
 	overflow-x:auto;
+    border: 1px solid #999;
+    margin:20px 50px;
+    background-color: #F7F7F0;
 }
 #doc div ul{
     margin-right:0;
@@ -438,7 +437,8 @@ a:hover{
     text-decoration:none;
 }
 #doc a{
-    border-bottom:1px dashed;
+    border-bottom:medium none;
+    font-weight:bold;
 }
 
 

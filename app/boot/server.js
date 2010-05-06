@@ -10,10 +10,8 @@ jQuery.noConflict();
     
     //The environments are described in environments.js
     try{
-
- 	   //$.env('defaults', "dev.server"); 
-       $.env('defaults', "appengine.server");
-       
+        //auto select environment based on window.location
+        $.env();
  	}catch(e){
  	   log.error("Environmental selection is invalid!").exception(e);
  	}

@@ -7,15 +7,19 @@
 	//  -   ENVIRONMENTAL CONFIGURATION   -
 	//________________________________________________________________//
 	$.env({
+        automap:{
+            'file:///opt':          'dev.server',
+            'file:///base':         'appengine.server',
+            'http://localhost':     'dev.client',
+            'http://www.envjs':     'production.client'
+        },
 	    defaults:{
-            root:'/',
-			templates:'http://localhost:8080/app/templates/',
-            data:'data/',
-            db:'jQuery.gdb',
-            dbclient:'direct',
-            dbconnection:{'default':{
-
-            }}
+            root: '/',
+			templates: 'app/templates/',
+            data: 'data/',
+            db: 'jQuery.gdb',
+            dbclient: 'direct',
+            dbconnection: { 'default': {} }
 	    },
 	    //------------------------------------------------------------//
 	    //  -   APPENGINE CONFIGURATION   -

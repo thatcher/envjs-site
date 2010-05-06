@@ -26,25 +26,53 @@
     };
     
     $.extend($S.Site.prototype, {
-        api: function(event){
-            var id = event.params('id');
-            Apis.forVersion(id, function(api){
-                Releases.currentVersions(function(versions){
-                    event.m({
-                        id:         id,
-                        api:        api,
-                        versions:   versions,
-                        template:   $.env( 'templates' ) +'html/pages/api/'+id+'.tmpl'
-                    }).render();
-                });
-            });
-        },
         docs: function(event){
             Releases.currentVersions(function(versions){
                 event.m({
                     versions:   versions,
                     template:   $.env( 'templates' ) + 'html/pages/docs.tmpl'
                 }).render();
+            });
+        },
+        doc: function(event){
+            var id = event.params('id'),
+                type = event.params('type');
+                
+            Docs = type == 'guide' ? Guides : Apis;
+            
+            Docs.forVersion(id, function(docs){
+                var contents, i;
+                for(i=0; i < docs.length; i++){
+                    if('table-of-contents' === docs[i].name){
+                        contents = docs[i];
+                        break;
+                    }
+                }
+                Releases.currentVersions(function(versions){
+                    event.m({
+                        id:         id,
+                        title:      type == 'guide' ? "Guides" : "Apis",
+                        type:       type,
+                        docs:       docs,
+                        pages:      contents.page.split('|'),
+                        versions:   $(versions).map(function(index, version){
+                            return {
+                                doc:{
+                                    link: $.env( "root" ) + "doc/guide/" + version.$id.replace("envjs-",""),
+                                    title: version.name
+                                },
+                                release: {
+                                    link: $.env( "root" ) + "release/" + version.$id,
+                                    title: version.$id
+                                }
+                            };
+                        }).get(),
+                        template:   $.env( 'templates' ) +'html/pages/doc/'+id+'.tmpl',
+                        links:  {
+                            docs:   $.env( "root" ) + "docs",
+                        }
+                    }).render();
+                });
             });
         },
         // Not to be confused, this function represents a calendar event
@@ -55,19 +83,6 @@
                     events:     events,
                     template:   $.env( 'templates' ) + 'html/pages/events.tmpl'
                 }).render();
-            });
-        },
-        guide: function(event){
-            var id = event.params('id');
-            Guides.forVersion(id, function(guide){
-                Releases.currentVersions(function(versions){
-                    event.m({
-                        id:         id,
-                        guide:      guide,
-                        versions:   versions,
-                        template:   $.env( 'templates' ) +'html/pages/guide/'+id+'.tmpl'
-                    }).render();
-                });
             });
         },
         home: function(event){

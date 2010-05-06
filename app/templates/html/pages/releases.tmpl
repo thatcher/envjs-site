@@ -2,15 +2,21 @@
 {{ block main }}
 <div id='releases'>
     <h3>releases</h3>
-    <div class='first column span-10 colborder'>
+    <div class='first column span-23'>
         <ul>
         {{ each releases }}
             <li>
-                <div class='span-9 column'>
+                <h4>
                     <a href='${ $.env("root")+"release/"+this.$id }'>
                         <strong>${ this.name }</strong>
                     </a>
-                    <br/>
+                </h4>
+                <div class='span-3 column'>
+                    <a href='${ $.env("root")+"release/"+this.$id }'>
+                        ${ this.$id }
+                    </a>
+                </div>
+                <div class='span-4 column colborder'>
                     <a href='${ this.zip }'>
                         <img
                             src='${ $.env("root")+"images/zip.jpg" }'
@@ -25,23 +31,9 @@
                             height='70px'
                         />
                     </a>
-                    <div class='span-3 column'>
-                        <span>for more informations and downloads related to this release</span>
-                        <a href='${ $.env("root")+"release/"+this.$id }'>
-                            click here
-                        </a>
-                    </div>
                </div>
-            </li>
-        {{ /each }}
-        </ul>
-    </div>
-    <div class='last column span-10'>
-        <ul>
-        {{ each releases }}
-            <li>
-                <div class='span-10'>
-                {{ html this.description }}
+                <div class='last column span-14' >
+                    {{ html this.description }}
                 </div>
             </li>
         {{ /each }}

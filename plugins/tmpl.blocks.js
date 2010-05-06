@@ -25,7 +25,7 @@ block: {
                     }\n",
     suffix:"\n\
                     T.push(end);\n\
-                    return T.join(' ');\n\
+                    return T.join('');\n\
                 })());\n\
                 break;\n\
             };\n\

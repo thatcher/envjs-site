@@ -133,7 +133,46 @@
     ],
     "guides":[
         {
+            "$id": "table-of-contents",
+            "order": "00",
+            "version":["1.0.x", "1.1.rc2", "1.2.11"],
+            "page": "running|walking|crawling",
+            "name": "table-of-contents",
+            "deleted":"",
+            "deprecated": "",
+            "description": "TODO",
+            "examples": ""
+        },
+        {
+            "$id": "running-intro",
+            "order": "00",
+            "version":["1.0.x", "1.1.rc2", "1.2.11"],
+            "page": "running",
+            "name": "intro",
+            "deleted":"",
+            "deprecated": "",
+            "description": "     <p>\
+            env.rhino.js can be run either with a \"generic\" version of the Rhino\
+            library (js.jar), or with the repackaged/extended version of Rhino\
+            supplied with env.js (env-js.jar).  If your application uses multiple\
+            windows, frames, or iframes, or if it depends on precise adherence to\
+            JavaScript object scoping in event handlers, you will have to use\
+            env-js.jar.  Simple applications may be able to run with the generic\
+            version of Rhino.\
+        </p>\
+        <p>\
+            The command line used for testing env.js can be found in build.xml,\
+            although the general form is:<br/><br/>\
+            <code> java -jar [jar file] [javascript file] </code><br/><br/>\
+            Where \"jar file\" is either \"dist/env-js.jar\", \"rhino/js.jar\", or your\
+            local path to a different version of the Rhino js.jar file.  The\
+            \"javascript file\" is the path to the JavaScript you wish to execute.\
+        </p>",
+            "examples": ""
+        },
+        {
             "$id": "running-rhino",
+            "order": "01",
             "version":["1.0.x", "1.1.rc2", "1.2.11"],
             "page": "running",
             "name": "rhino",
@@ -165,16 +204,18 @@
         },
         {
             "$id": "running-frames",
-            "version": "1.1.rc2",
+            "order": "02",
+            "version": ["1.0.x", "1.1.rc2"],
             "page": "running",
             "name": "frames",
-            "deleted":"",
-            "deprecated": true,
+            "deleted":"1.0.x",
+            "deprecated": '1.2.11',
             "description": "    <p>        If your html application makes use of frames or iframes you will need        to use the conveniently rebundled rhino jar, <strong>dist/env-js.jar</strong>.        This simply enables and provides scope management routines to Envjs that        are otherwise transparent to you as an end user.                <pre class='box'>            env-js $ java -jar dist/env-js.jar                </pre>                You should then see the javascript prompt... and you are ready to load        env.rhino.js.    </p>",
             "examples": [""]
         },
         {
             "$id": "running-console",
+            "order": "03",
             "version": ["1.0.x", "1.1.rc2", "1.2.11"],
             "page": "running",
             "name": "console",
@@ -185,6 +226,7 @@
         },
         {
             "$id": "running-embed",
+            "order": "04",
             "version": ["1.0.x", "1.1.rc2", "1.2.11"],
             "page": "running",
             "name": "embed",
@@ -194,7 +236,26 @@
             "examples": [""]
         },
         {
+            "$id": "walking-intro",
+            "order":"00",
+            "version":["1.0.x", "1.1.rc2", "1.2.11"],
+            "page": "walking",
+            "name": "intro",
+            "deleted":"",
+            "deprecated": "",
+            "description": "\
+            <p>\
+                Now that you are up and running, it's time to slow down and\
+                check outwhat Envjs has to offer.  The goal of Envjs is \
+                simply to emulate the browser client-side javascript \
+                environment.  All you have to do is load env.rhino.js,\
+                configure, and go.\
+            </p>",
+            "examples": ""
+        },
+        {
             "$id": "walking-load",
+            "order": "01",
             "version": ["1.0.x", "1.1.rc2", "1.2.11"],
             "page": "walking",
             "name": "load",
@@ -212,6 +273,7 @@
         }, 
         {
             "$id": "walking-configure",
+            "order": "02",
             "version": ["1.0.x", "1.1.rc2", "1.2.11"],
             "page": "walking",
             "name": "configure",
@@ -237,6 +299,7 @@
         }, 
         {
             "$id": "walking-go",
+            "order": "03",
             "version": ["1.0.x", "1.1.rc2", "1.2.11"],
             "page": "walking",
             "name": "go",
@@ -279,7 +342,31 @@
             "examples": [""]
         },
         {
+            "$id": "crawling-intro",
+            "order": "00",
+            "version":["1.0.x", "1.1.rc2", "1.2.11"],
+            "page": "crawling",
+            "name": "intro",
+            "deleted":"",
+            "deprecated": "",
+            "description": "\
+            <p>\
+                With Envjs, we refer to crawling loosely as the act of\
+                injecting script into an HTML application.  This means you\
+                could be adding jQuery to the browser environment and grepping\
+                for all links, potentially storing them and following them, or\
+                more simply allowing script to run while monitoring the DOM\
+                for state changes or logging test results to the console.\
+            </p>\
+            <p>\
+                Crawling can be acheived by combining a little shell scripting\
+                with Envjs script loading hooks or with pure javascript.\
+            </p>",
+            "examples": ""
+        },
+        {
             "$id": "crawling-hooks",
+            "order": "01",
             "version": ["1.0.x", "1.1.rc2", "1.2.11"],
             "page": "crawling",
             "name": "hooks",
@@ -409,6 +496,7 @@ load('build/runtest/env.js');\n\
             "examples": [""]
         }, {
             "$id": "crawling-scripting",
+            "order": "02",
             "page": "crawling",
             "name": "scripting",
             "deleted":"",
@@ -468,8 +556,42 @@ load('build/runtest/env.js');\n\
         }
     ],
     "apis":[
+    {
+            "$id": "table-of-contents",
+            "order":"00",
+            "version":["1.0.x", "1.1.rc2", "1.2.11"],
+            "page": "options|hooks|platform",
+            "name": "table-of-contents",
+            "deleted":"",
+            "deprecated": "",
+            "description": "TODO",
+            "examples": ""
+        },
+        {
+            "$id": "options-intro",
+            "order":"01",
+            "version":["1.0.x", "1.1.rc2", "1.2.11"],
+            "page": "options",
+            "name": "intro",
+            "deleted":"",
+            "deprecated": "",
+            "description": "\
+            <p>\
+                Envjs provides a number of basic configurable options\
+                which allow users to modify the default behavior\
+                the code base.\
+            </p>\
+            <p>\
+                Options, Hooks, and Platform functions are all set, or\
+                overridden via the same mechanism, using Envjs as a\
+                function whose argument as an object is used to\
+                effectively replace the default value.\
+            </p>",
+            "examples": ""
+        },
         {
             "$id": "options-scriptTypes",
+            "order":"02",
             "version": ["1.0.x", "1.1.rc2", "1.2.11"],
             "page": "options",
             "name": "scriptTypes",
@@ -510,6 +632,7 @@ load('build/runtest/env.js');\n\
         }, 
         {
             "$id": "options-logLevel",
+            "order":"03",
             "version": ["1.0.x", "1.1.rc2", "1.2.11"],
             "page": "options",
             "name": "logLevel",
@@ -538,6 +661,7 @@ load('build/runtest/env.js');\n\
         }, 
         {
             "$id": "options-appCodeName",
+            "order":"04",
             "version": ["1.0.x", "1.1.rc2", "1.2.11"],
             "page": "options",
             "name": "appCodeName",
@@ -571,6 +695,7 @@ load('build/runtest/env.js');\n\
         }, 
         {
             "$id": "options-appName",
+            "order":"05",
             "version": ["1.0.x", "1.1.rc2", "1.2.11"],
             "page": "options",
             "name": "appName",
@@ -604,6 +729,7 @@ load('build/runtest/env.js');\n\
         }, 
         {
             "$id": "options-tmpdir",
+            "order":"06",
             "version": ["1.0.x", "1.1.rc2", "1.2.11"],
             "page": "options",
             "name": "tmpdir",
@@ -639,6 +765,7 @@ load('build/runtest/env.js');\n\
         }, 
         {
             "$id": "options-os_name",
+            "order":"07",
             "version": ["1.0.x", "1.1.rc2", "1.2.11"],
             "page": "options",
             "name": "os_name",
@@ -670,6 +797,7 @@ load('build/runtest/env.js');\n\
             "examples": [""]
         }, {
             "$id": "options-os_arch",
+            "order":"08",
             "version": ["1.0.x", "1.1.rc2", "1.2.11"],
             "page": "options",
             "name": "os_arch",
@@ -702,6 +830,7 @@ load('build/runtest/env.js');\n\
         }, 
         {
             "$id": "options-os_version",
+            "order":"09",
             "version": ["1.0.x", "1.1.rc2", "1.2.11"],
             "page": "options",
             "name": "os_version",
@@ -735,6 +864,7 @@ load('build/runtest/env.js');\n\
         }, 
         {
             "$id": "options-lang",
+            "order":"10",
             "version": ["1.0.x", "1.1.rc2", "1.2.11"],
             "page": "options",
             "name": "lang",
@@ -766,6 +896,7 @@ load('build/runtest/env.js');\n\
         }, 
         {
             "$id": "options-platform",
+            "order":"11",
             "version": ["1.0.x", "1.1.rc2", "1.2.11"],
             "page": "options",
             "name": "platform",
@@ -799,6 +930,7 @@ load('build/runtest/env.js');\n\
         }, 
         {
             "$id": "options-javaEnabled",
+            "order":"12",
             "version": ["1.0.x", "1.1.rc2", "1.2.11"],
             "page": "options",
             "name": "javaEnabled",
@@ -829,7 +961,31 @@ load('build/runtest/env.js');\n\
             "examples": [""]
         },
         {
+            "$id": "hooks-intro",
+            "order":"00",
+            "version":["1.0.x", "1.1.rc2", "1.2.11"],
+            "page": "hooks",
+            "name": "intro",
+            "deleted":"",
+            "deprecated": "",
+            "description": "\
+            <p>\
+                Hooks allow users of Envjs to extend the usual behavior\
+                at well known points, or to subscribe to internal\
+                events that a browser would not normally expose. \
+            </p>\
+            <p>\
+                These are very useful, for example, to allow Envjs users\
+                to run existing HTML files unmodified, while still being \
+                able to provide additional information to the console,\
+                or to store state regarding the HTML applications\
+                processes. \
+            </p>",
+            "examples": ""
+        },
+        {
             "$id": "hooks-beforeScriptLoad",
+            "order":"01",
             "version": ["1.0.x", "1.1.rc2", "1.2.11"],
             "page": "hooks",
             "name": "beforeScriptLoad",
@@ -858,6 +1014,7 @@ load('build/runtest/env.js');\n\
         }, 
         {
             "$id": "hooks-afterScriptLoad",
+            "order":"02",
             "version": ["1.0.x", "1.1.rc2", "1.2.11"],
             "page": "hooks",
             "name": "afterScriptLoad",
@@ -897,6 +1054,7 @@ load('build/runtest/env.js');\n\
         }, 
         {
             "$id": "hooks-onScriptLoadError",
+            "order":"03",
             "version": ["1.0.x", "1.1.rc2", "1.2.11"],
             "page": "hooks",
             "name": "onScriptLoadError",
@@ -932,6 +1090,7 @@ load('build/runtest/env.js');\n\
         }, 
         {
             "$id": "hooks-onInterrupt",
+            "order":"04",
             "version": ["1.0.x", "1.1.rc2", "1.2.11"],
             "page": "hooks",
             "name": "onInterrupt",
@@ -965,7 +1124,32 @@ load('build/runtest/env.js');\n\
             "examples": [""]
         },
         {
+            "$id": "platform-intro",
+            "order":"00",
+            "version":["1.0.x", "1.1.rc2", "1.2.11"],
+            "page": "platform",
+            "name": "intro",
+            "deleted":"",
+            "deprecated": "",
+            "description": "\
+            <p>\
+                Platform functions are required to be implemented by\
+                authors who wish to run Envjs on additional javascript\
+                engines.  Currenlty only rhino is supported though\
+                we hope to support additional engines in the future.\
+            </p>\
+            <p>\
+                These functions are also available to the Envjs users\
+                as utilities, for example, to write out the resulting\
+                dom, after manipulation by javascript, to a local file.\
+                Also the default implementations may be easily overridden\
+                to suit the users particular needs.\
+            </p>",
+            "examples": ""
+        },
+        {
             "$id": "platform-log",
+            "order":"01",
             "version": ["1.0.x", "1.1.rc2", "1.2.11"],
             "page": "platform",
             "name": "log",
@@ -993,6 +1177,7 @@ load('build/runtest/env.js');\n\
         }, 
         {
             "$id": "platform-location",
+            "order":"02",
             "version": ["1.0.x", "1.1.rc2", "1.2.11"],
             "page": "platform",
             "name": "location",
@@ -1026,6 +1211,7 @@ load('build/runtest/env.js');\n\
         }, 
         {
             "$id": "platform-loadScript",
+            "order":"03",
             "version": ["1.0.x", "1.1.rc2", "1.2.11"],
             "page": "platform",
             "name": "loadScript",
@@ -1049,6 +1235,7 @@ load('build/runtest/env.js');\n\
         }, 
         {
             "$id": "platform-loadLocalScript",
+            "order":"04",
             "version": ["1.0.x", "1.1.rc2", "1.2.11"],
             "page": "platform",
             "name": "loadLocalScript",
@@ -1080,6 +1267,7 @@ load('build/runtest/env.js');\n\
         }, 
         {
             "$id": "platform-timer",
+            "order":"05",
             "version": ["1.0.x", "1.1.rc2", "1.2.11"],
             "page": "platform",
             "name": "timer",
@@ -1106,6 +1294,7 @@ load('build/runtest/env.js');\n\
         }, 
         {
             "$id": "platform-runAsync",
+            "order":"06",
             "version": ["1.0.x", "1.1.rc2", "1.2.11"],
             "page": "platform",
             "name": "runAsync",
@@ -1130,6 +1319,7 @@ load('build/runtest/env.js');\n\
         }, 
         {
             "$id": "platform-loadFrame",
+            "order":"07",
             "version": ["1.0.x", "1.1.rc2", "1.2.11"],
             "page": "platform",
             "name": "loadFrame",
@@ -1148,6 +1338,7 @@ load('build/runtest/env.js');\n\
         }, 
         {
             "$id": "platform-proxy",
+            "order":"08",
             "version": ["1.0.x", "1.1.rc2", "1.2.11"],
             "page": "platform",
             "name": "proxy",
@@ -1166,6 +1357,7 @@ load('build/runtest/env.js');\n\
         }, 
         {
             "$id": "platform-writeToFile",
+            "order":"09",
             "version": ["1.0.x", "1.1.rc2", "1.2.11"],
             "page": "platform",
             "name": "writeToFile",
@@ -1191,6 +1383,7 @@ load('build/runtest/env.js');\n\
         }, 
         {
             "$id": "platform-writeToTempFile",
+            "order":"10",
             "version": ["1.0.x", "1.1.rc2", "1.2.11"],
             "page": "platform",
             "name": "writeToTempFile",
@@ -1217,6 +1410,7 @@ load('build/runtest/env.js');\n\
         }, 
         {
             "$id": "platform-deleteFile",
+            "order":"11",
             "version": ["1.0.x", "1.1.rc2", "1.2.11"],
             "page": "platform",
             "name": "deleteFile",
@@ -1235,10 +1429,16 @@ load('build/runtest/env.js');\n\
     }\n\
     \
 </pre>",
-            "examples": [""]
+            "examples": ["\
+javascript\n\
+Envjs.deleteFile = function(url){\n\
+  //deletes the file at the given url\n\
+}"
+            ]
         }, 
         {
             "$id": "platform-connection",
+            "order": "11",
             "version": ["1.0.x", "1.1.rc2", "1.2.11"],
             "page": "platform",
             "name": "connection",

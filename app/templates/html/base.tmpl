@@ -21,8 +21,8 @@
             {{ include $.env("templates")+"html/links.tmpl" }}
 		{{ /block }}
         
+        {{ include $.env("templates")+"html/scripts.tmpl" }}
 		{{ block script }}
-            {{ include $.env("templates")+"html/scripts.tmpl" }}
 		{{ /block }}
     </head>
     <body>

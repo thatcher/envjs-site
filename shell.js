@@ -9,8 +9,8 @@ try{
     //env-js is our simulated browser environments so we can use all of
     //our favorite client side libraries and tricks.  Right now
     //the html parser is too big for the rhino compiler to optimize.
-    Packages.org.mozilla.javascript.Context.
-        getCurrentContext().setOptimizationLevel(-1);
+    /*Packages.org.mozilla.javascript.Context.
+        getCurrentContext().setOptimizationLevel(-1);*/
     
     var __arguments__,
         log;

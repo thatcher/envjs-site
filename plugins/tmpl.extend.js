@@ -32,7 +32,7 @@ jQuery.extend(jQuery.tmpl.tags,{
             }\n\
         }\n\
         /*finally render */\n\
-        T.push( $._render( T._, $data ) );\n\
+        T.push( $._render( T._, $.extend( true, {}, $data, this) ) );\n\
         T._ = null;\n\
         "
     }

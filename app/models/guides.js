@@ -31,6 +31,10 @@
                 not:[null],
                 msg:'please provide a short name'
             },
+            order:{
+                pattern:/^[0-9]{1,32}$/,
+                'default': 0
+            },
             page:{
                 pattern:/^[\w]{1,64}$/,
                 not:[null],
@@ -109,7 +113,7 @@
             log.debug('getting guides for version %s', version );
             this.find({
                 async: false,
-                select:"new Query('guides').addFilter('version', $EQUAL, '"+version+"')",
+                select:"new Query('guides').addFilter('version', $EQUAL, '"+version+"').addSort('order')",
                 success: function(results){
                     log.debug('found apis for %s', version );
                     callback(results.data);

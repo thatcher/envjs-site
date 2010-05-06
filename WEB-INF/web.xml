@@ -33,7 +33,6 @@
           <param-name>dispatch-function</param-name>
           <param-value>ClaypoolServerHandler</param-value>
         </init-param>  
-        <!-- Set to false for production releases -->
         <load-on-startup>2</load-on-startup>
     </servlet>  
     

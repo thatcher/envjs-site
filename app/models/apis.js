@@ -31,10 +31,19 @@
                 not:[null],
                 msg:'please provide a short name'
             },
+            order:{
+                pattern:/^[0-9]{1,32}$/,
+                'default': 0
+            },
             page:{
                 pattern:/^[\w]{1,64}$/,
                 not:[null],
                 msg:'please provide a name this entry will belond to.'
+            },
+            version:{
+                references: '#releases',
+                not:[null],
+                msg:'please select a valid release id'
             }
         }));
         log = $.logger('EnvJS.Models.Apis');

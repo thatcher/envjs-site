@@ -5,8 +5,6 @@
  * 
  * */
 body #main form input{
-    background-color:#000;
-    color:#FFF;
     margin:1px;
 }
 
@@ -19,18 +17,21 @@ body #main form .ss_sprite a{
 }
 
 #main form textarea{
-    background-color:#000;
-    color:#FFF;
-    margin:0;
-    border:none;
     font-family:Verdana,Geneva,Arial,Helvetica,sans-serif;
     font-size:12px;
     width:100%;
 }
 
 #main form input.submit{
-    border: 1px dotted #fff;
     float:right;
 }
 
+.deleted{
+    border:1px dashed #900;
+    background-color:#FFAAAA;
+}
 
+h3 span.ss_sprite{
+    display:inline-block;
+    margin:0 0 -3px;
+}

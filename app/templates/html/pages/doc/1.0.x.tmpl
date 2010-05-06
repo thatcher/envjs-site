@@ -1,0 +1,127 @@
+{{ extend $.env( "templates" ) + "html/base.tmpl" }}
+
+{{ block script_extra }}
+<script src='${ $.env("root")+"plugins/jquery.chili.js" }' type="text/javascript" ></script>
+<script src='${ $.env("root")+"plugins/jquery.chili.recipes.js" }' type="text/javascript" ></script>
+<script>
+    jQuery(function($){ 
+        $('#main pre.box').
+            addClass('chili-lang-javascript').
+            chili();
+    });
+</script>
+{{ /block }}
+
+{{ block main }}
+<div id='doc'>
+    <h3>
+        <a href='${ links.docs }'>
+            &lt; documentation
+        </a>
+    </h3>
+    <div id='table_of_contents'
+         class=' column span-4 colborder'>
+        {{ each(i, page) pages }}
+        <h4>${ page }</h4>
+        <ul>
+            {{ each _(docs).where("page", page) }}
+            {{ if !( "intro" === this.name ) }}
+            <li class='${ this.deleted ? "deleted" : ""}'>
+                <a href='${ "#"+this.$id }'> ${ this.name } </a>
+            </li>
+            {{ /if }}
+            {{ /each }}
+        </ul> 
+        {{ /each }}
+        
+    </div>
+    
+    <div class='first column span-17'>
+        {{ if admin }}
+            <div style='clear:both;text-align:center;'>
+                <span class="ss_sprite  ss_add">
+                    <a href='${ $.env( "root" ) + "admin/add/"+type+"s/" }'>
+                        Add ${ type } entry
+                    </a>
+                    <br/>
+                    <a id='show_deleted'
+                       href='#show/deleted'>
+                       show deleted ${ type } entries
+                    </a>
+                    <span> | </span>
+                    <a id='hide_deleted'
+                       href='#hide/deleted'>
+                       hide deleted ${ type } entries
+                    </a>
+                </span>
+            </div>
+        {{ /if }}
+        {{ each(i, page) pages }}
+            <h2>
+                <img src='${ $.env( "root" ) + ( "images/icon-green.png" ) }'
+                     height='30px'/>
+                ${ page }
+            </h2>
+            <ul>
+            {{ each _(docs).where("page", page) }}
+                <li id='${ this.$id }' 
+                    class='${ this.deleted ? "deleted" : ""}'>
+                    {{ if "intro" === this.name && i === 0 && !admin}}
+                    <div id='versions' class='last column span-4'>
+                        <h4 >
+                            <strong>${ title } ${ this.id }</strong>
+                        </h4>
+                        
+                        <img src='${ $.env( "root" ) + "images/icon-brown.png" }' 
+                             alt='${ this.title } ${ this.id }'
+                             height='150px'/>
+                             <br/>
+                        <strong>releases</strong>
+                        <ul>
+                            {{ each versions }}
+                            <li>
+                                <a href='${ this.doc.link }'>
+                                    ${ this.doc.title }
+                                </a> 
+                                <a href='${ this.release.link }'>
+                                    ${ this.release.title }
+                                </a>
+                                <br/>
+                             </li>
+                            {{ /each }}
+                        </ul>
+                    </div>
+                    {{ elseif !( "intro" === this.name )  }}
+                    <h3>
+                        ${ this.name }
+                        {{ if this.deleted }}
+                        <span class="ss_sprite  ss_add">
+                            <a href='${ $.env("root") }admin/restore/${ type }s/${ this.$id }'> 
+                                 restore '${ this.name }'
+                            </a>
+                        </span>
+                        {{ else }}
+                        <span class="ss_sprite  ss_delete">
+                            <a href='${ $.env("root") }admin/remove/${ type }s/${ this.$id }'> 
+                                 delete '${ this.name }'
+                            </a>
+                        </span>
+                        {{ /if }}
+                    </h3>
+                    <hr/>
+                    {{ /if }}
+                    
+                    {{ if admin }}
+                        {{ include $.env("templates")+"html/pages/doc/1.0.x.form.tmpl" }}
+                        <br/>
+                    {{ else }}
+                        {{ html this.description }}
+                    {{ /if }}
+                </li>
+            {{ /each }}
+            </ul>
+        {{ /each }}
+    </div>
+    
+</div>
+{{ /block }}
