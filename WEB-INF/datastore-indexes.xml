@@ -1,0 +1,15 @@
+<datastore-indexes autoGenerate="true">
+
+    <!-- Used 1 time in query history -->
+    <datastore-index kind="apis" ancestor="false" source="auto">
+        <property name="version" direction="asc"/>
+        <property name="order" direction="asc"/>
+    </datastore-index>
+
+    <!-- Used 1 time in query history -->
+    <datastore-index kind="guides" ancestor="false" source="auto">
+        <property name="version" direction="asc"/>
+        <property name="order" direction="asc"/>
+    </datastore-index>
+
+</datastore-indexes>
