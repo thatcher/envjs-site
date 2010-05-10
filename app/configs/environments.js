@@ -11,7 +11,7 @@
             'file:///opt':          'dev.server',
             'file:///base':         'appengine.server',
             'http://localhost':     'dev.client',
-            'http://www.envjs':     'production.client'
+            'http://www.envjs':     'prod.client'
         },
 	    defaults:{
             root: '/',
@@ -26,8 +26,8 @@
 	    //____________________________________________________________//
 	    appengine:{
 	        server:{
-	            templates:'http://4.latest.env-js.appspot.com/app/templates/',
-	            data:'http://4.latest.env-js.appspot.com/data/'
+	            templates:'http://3.latest.env-js.appspot.com/app/templates/',
+	            data:'http://3.latest.env-js.appspot.com/data/'
 	        }
 	    },
 	    //------------------------------------------------------------//

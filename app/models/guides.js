@@ -54,7 +54,7 @@
             var _this = this;
             this.find({
                 async:false,
-                select:"new Query('guides')",
+                select:"new Query('guides').addSort('order')",
                 success:function(results){
                     log.debug('loaded all %s guides', results.data.length );
                     callback(results.data);
@@ -73,7 +73,7 @@
             var _this = this;
             this.find({
                 async:false,
-                select:"new Query('guides').addFilter('deleted', $EQUAL, '')",
+                select:"new Query('guides').addFilter('deleted', $EQUAL, '').addSort('order')",
                 data: ['$id', 'page', 'name'],
                 success:function(results){
                     log.debug('loaded all %s guides', results.data.length );
@@ -93,7 +93,7 @@
             var _this = this;
             this.find({
                 async:false,
-                select:"new Query('guides').addFilter('deleted', $EQUAL, '')",
+                select:"new Query('guides').addFilter('deleted', $EQUAL, '').addSort('order')",
                 success:function(results){
                     log.debug('loaded all %s guides', results.data.length );
                     callback(results.data);
