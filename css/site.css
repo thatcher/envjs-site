@@ -138,11 +138,11 @@ a:hover{
 /*****************************/
 
 
-
-
-
 #recentnews {
-    margin-top:0;
+    margin:10px 40px 20px 60px;
+}
+#recentnews div{
+    margin:0 10px 20px 0;
 }
 #recentnews h3{
     margin-left:20px;
@@ -154,10 +154,18 @@ a:hover{
 #recentnews ul li h4{
     text-align:right;
 }
+#recentnews p{
+    text-align:right;
+    margin:0;
+    padding:0;
+}
 
 #recentnews img{
 	margin:0 15px;
 	padding:3px;
+    float:right;
+    width:80px;
+    display:none;
 }
 #recentnews h3 a{
    text-decoration:none;
@@ -398,8 +406,12 @@ a:hover{
 #doc strong{
 	text-transform:none;
 }
-#doc div h3 {
-    
+#doc div h5{
+    margin: auto 2em;
+}
+ #doc div table {
+    margin: auto 3em;
+    width:60%;
 }
 #doc h2{
    border-top:none;
@@ -432,6 +444,9 @@ a:hover{
 #doc div.first ul{
     margin-right:0;
 	list-style:none;
+}
+#doc div ul li{
+    margin-top:10px;
 }
 #doc div.first ul li a{
     text-decoration:none;

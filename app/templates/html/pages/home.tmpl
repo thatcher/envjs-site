@@ -21,8 +21,8 @@
         {{ each news }}
         <li>
             <div class='clear'>
-            <h4> ${ this.title } <em> ${ this.date } </em> </h4>
-            {{ html this.description }}
+            <h4> ${ this.title } <!--em> ${ this.date } </em--> </h4>
+            {{ html $.creole(this.description) }}
             </div>
         </li>
         {{ /each }}

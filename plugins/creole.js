@@ -369,3 +369,20 @@ Parse.Simple.Creole = function(options) {
 Parse.Simple.Creole.prototype = new Parse.Simple.Base();
 
 Parse.Simple.Creole.prototype.constructor = Parse.Simple.Creole;
+
+/**
+ * @author thatcher
+ */
+(function(){
+
+    var creole = new Parse.Simple.Creole(),
+        holder = document.createElement('div');
+    
+    jQuery.creole = function(markup){
+        creole.parse(holder, markup);
+        var value = holder.innerHTML;
+        holder.innerHTML = '';
+        return value;
+    };
+
+})();

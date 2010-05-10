@@ -87,12 +87,15 @@
                     Description
                 </label>
                 <textarea id='${ this.$id }-description'
-                          name='description'>
-                    ${ this.description }
-                </textarea>
+                          name='description'>${ this.description }</textarea>
                 </td>
             </tr>
             
+            {{ if !($.isArray(examples)) }}
+            <input type='hidden'
+                   name='examples'
+                   value=""/>
+            {{ else }}
             {{ each(index, example) examples }}
             <tr>
                 <td colspan='4'>
@@ -106,12 +109,12 @@
                 </label>
                 <textarea id='${ this.$id }-examples.${ index }'
                     name="examples.${ index }"
-                    style='height:${ Math.ceil(example.length/80)+5 }em;'>
-                    ${ example }
-                </textarea>
+                    style='height:${ Math.ceil(example.length/80)+5 }em;'
+                    >${ example }</textarea>
                 </td>
             </tr>
             {{ /each }}
+            {{ /if }}
     
             <tr>
                 <td>

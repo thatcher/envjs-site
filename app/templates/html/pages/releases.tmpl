@@ -33,7 +33,7 @@
                     </a>
                </div>
                 <div class='last column span-14' >
-                    {{ html this.description }}
+                    {{ html $.creole(this.description) }}
                 </div>
             </li>
         {{ /each }}
