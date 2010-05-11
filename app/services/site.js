@@ -35,12 +35,12 @@
             });
         },
         doc: function(event){
-            var id = event.params('id'),
-                type = event.params('type');
-                
-            Docs = type == 'guide' ? Guides : Apis;
+            var type = event.params('type');
+            log.debug('loading %s doc', type)
             
-            Docs.forVersion(id, function(docs){
+            Docs = type == 'guides' ? Guides : Apis;
+            
+            Docs.all(function(docs){
                 var contents, i;
                 for(i=0; i < docs.length; i++){
                     if('table-of-contents' === docs[i].name){
@@ -50,7 +50,6 @@
                 }
                 Releases.currentVersions(function(versions){
                     event.m({
-                        id:         id,
                         title:      type == 'guide' ? "Guides" : "Apis",
                         type:       type,
                         docs:       docs,
@@ -58,16 +57,16 @@
                         versions:   $(versions).map(function(index, version){
                             return {
                                 doc:{
-                                    link: $.env( "root" ) + "doc/guide/" + version.$id.replace("envjs-",""),
+                                    link: $.env( "root" ) + "doc/guide/",
                                     title: version.name
                                 },
                                 release: {
-                                    link: $.env( "root" ) + "release/" + version.$id,
+                                    link: $.env( "root" ) + "release/",
                                     title: version.$id
                                 }
                             };
                         }).get(),
-                        template:   $.env( 'templates' ) +'html/pages/doc/'+id+'.tmpl',
+                        template:   $.env( 'templates' ) +'html/pages/doc.tmpl',
                         links:  {
                             docs:   $.env( "root" ) + "docs",
                         }

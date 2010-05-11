@@ -22,7 +22,7 @@
                 pattern:/^[0-9]{1,32}$/,
                 msg:'timestamp when record was removed'
             },
-            example:{
+            examples:{
                 not:[null],
                 msg:'please provide an example'
             },
@@ -131,13 +131,15 @@
         template: function(options){
             log.debug('generating template api entry');
             return $.extend({
-                $id:            '500',
-                version:        '0.0.0',
-                name:           $.title(2, false),
-                description:    $.paragraphs(1, false),
-                example:        $.paragraphs(2, false),
-                deprecated:     false,
-                deleted:        ''
+                $id:'options-newentry',
+                description:'Please provide a description.',
+                deprecated:'',
+                deleted:'',
+                examples:'',
+                name:'newentry',
+                order:'99',
+                page:'options',
+                version:['1.0.x', '1.1.rc2', '1.2.11']
             }, options );
         }
     });

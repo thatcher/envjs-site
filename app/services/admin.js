@@ -73,39 +73,22 @@
         },
         
         'add/': function(domain, id, event){
-            var Model = $.$('#'+domain+'Model');
+            var Model = $.$('#'+domain+'Model'),
+                template;
+                
+            template = Model.template(event.params('parameters'));
             
-            Model.get({
+            Model.save({
                 async:false,
-                success: function(results){
-                    var count = results.data.length+1,
-                        newId,
-                        params = event.request.parameters;
-                    if(count<10){
-                        newId = 'envjs00'+count;
-                    }else if (count<100){
-                        newId = 'envjs0'+count;
-                    }else{
-                        newId = 'envjs'+count;
-                    }
-                    $.$('#'+domain+'Model').save({
-                        async:false,
-                        id:newId,
-                        data:$.$('#'+domain+'Model').template($.extend({$id:newId},params)),
-                        success: function(){
-                            log.info('Added %s/%s', domain, newId);
-                            event.response.headers =  {
-                                status:   302,
-                                "Location": event.params('headers').Referer
-                            };
-                            return;
-                        },
-                        error: function(xhr, status, e){
-                            log.error('failed to add %s/%s', domain, id).
-                                exception(e);
-                            throw new Error(e);
-                        }
-                    });
+                id:template.$id,
+                data: template,
+                success: function(){
+                    log.info('Added %s/%s', domain, newId);
+                    event.response.headers =  {
+                        status:   302,
+                        "Location": event.params('headers').Referer
+                    };
+                    return;
                 },
                 error: function(xhr, status, e){
                     log.error('failed to add %s/%s', domain, id).
@@ -186,7 +169,37 @@
                 }
             });
         },
-        
+        'save/apis/': function(id, event){
+            admin['save/guides/'](id, event);
+        },
+        'save/guides/': function(id, event){
+            var domain = event.params('domain'),
+                Model = $.$('#'+domain+'Model'),
+                instance = Model.serialize(event.params('parameters')),
+                renamed;
+                
+            if(instance.$id != (instance.page + '-' + instance.name)){
+                //need to perform a 'rename operation' so the $id is
+                //representative of page and name
+                renamed = true;
+                Model.remove({
+                    id: instance.$id,
+                    async: false,
+                    success: function(){
+                        log.debug('removed %s as part of rename process', instance.$id);
+                    },
+                    error: function(){
+                        renamed = false;
+                        log.debug('failed to remove %s as part of rename process', instance.$id);
+                    }
+                });
+                if(renamed === false){
+                    return;
+                }
+                event.params('parameters').$id = (instance.page + '-' + instance.name);
+            }
+            admin['save/'](domain, id, event);
+        },
         'add/examples/' : function(id, event){
             var doc     = event.params('parameters').doc,
                 id      = event.params('parameters').id,

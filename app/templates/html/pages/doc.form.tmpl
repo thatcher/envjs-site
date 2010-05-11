@@ -1,5 +1,5 @@
 
-<form action='${ $.env("root") }admin/save/${ type }s/${ this.$id }' 
+<form action='${ $.env("root") }admin/save/${ type }/${ this.$id }' 
       method='post'>
     
     <table>
@@ -102,7 +102,7 @@
                 <label for='${ this.$id }-examples.${ index }'>
                     Example #${ index }
                     <span class="ss_sprite  ss_delete">
-                        <a href='${ $.env("root") }admin/remove/examples/?doc=${ type }s&amp;id=${ $id }&amp;index=${ index }'> 
+                        <a href='${ $.env("root") }admin/remove/examples/?doc=${ type }&amp;id=${ $id }&amp;index=${ index }'> 
                              delete example
                         </a>
                     </span>
@@ -119,7 +119,7 @@
             <tr>
                 <td>
                     <span class="ss_sprite  ss_add">
-                        <a href='${ $.env("root") }admin/add/examples/?doc=${ type }s&amp;id=${ $id }'> 
+                        <a href='${ $.env("root") }admin/add/examples/?doc=${ type }&amp;id=${ $id }'> 
                              add example
                         </a>
                     </span>
@@ -127,7 +127,7 @@
                 <td colspan='2'>
                     <input type='hidden'
                            name='$id'
-                           value='${ this.$id }'/>
+                           value='${ this.page + "-" + this.name }'/>
                 </td>
                 <td>
                     <input type='submit' 

@@ -414,12 +414,12 @@ a:hover{
     width:60%;
 }
 #doc h2{
-   border-top:none;
-   border-bottom:1px solid;
+    border-top:none;
+    border-bottom:1px solid;
 }
 #doc p {
-    margin:1em;
-    padding:1em;
+    margin:0 1em;
+    padding:5px 1em;
 }
 #doc div.first{
     text-align:left;
