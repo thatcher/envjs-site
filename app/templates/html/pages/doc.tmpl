@@ -1,5 +1,9 @@
 {{ extend $.env( "templates" ) + "html/base.tmpl" }}
 
+{{ block title }}
+<title>Envjs ${ type == "guides" ? "Guide" : "API" }</title>
+{{ /block }}
+
 {{ block script_extra }}
 <script type="text/javascript" 
         src='${ $.env("root")+"plugins/highlighter/shCore.js" }'></script>
@@ -7,6 +11,8 @@
         src='${ $.env("root")+"plugins/highlighter/shBrushJScript.js" }'></script>
 <script type="text/javascript" 
         src='${ $.env("root")+"plugins/highlighter/shBrushBash.js" }'></script>
+<script type="text/javascript" 
+        src='${ $.env("root")+"plugins/highlighter/shBrushJava.js" }'></script>
 <link type="text/css" rel="stylesheet" 
       href='${ $.env("root")+"css/highlighter/shCore.css" }'/>
 <link type="text/css" rel="stylesheet"
@@ -17,6 +23,7 @@
     SyntaxHighlighter.all();
 </script>
 {{ /block }}
+
 
 {{ block main }}
 <div id='doc'>
@@ -138,17 +145,17 @@
                 
                 {{ each(index, example) examples }}
                 <div style='margin: 20px 40px;border: 1px solid #123;background:#012;-moz-border-radius:0 10px 10px 10px'>
-                    {{ switch example.split("\r\n")[0] }}
-                    {{ case "//javascript" }}
+                    
+                    {{ if "//javascript" == example.substring(0, 11) }}
                     <pre class="brush: javascript;">${ example }</pre>
-                    {{ /case }}
-                    {{ case "#!bash" }}
+                    {{ elseif "#!bash" == example.substring(0,6) }}
                     <pre class="brush: bash;">${ example }</pre>
-                    {{ /case }}
-                    {{ default }}
+                    {{ elseif "#!java" == example.substring(0,6) }}
+                    <pre class="brush: java;">${ example }</pre>
+                    {{ else }}
                     <pre class="brush: javascript;">${ example }</pre>
-                    {{ /default}}
-                    {{ /switch }}
+                    {{ /if}}
+                    
                 </div>
                 {{ /each }}
                 

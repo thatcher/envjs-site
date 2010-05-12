@@ -83,7 +83,7 @@
                 id:template.$id,
                 data: template,
                 success: function(){
-                    log.info('Added %s/%s', domain, newId);
+                    log.info('Added %s/%s', domain, template.$id);
                     event.response.headers =  {
                         status:   302,
                         "Location": event.params('headers').Referer
@@ -91,7 +91,7 @@
                     return;
                 },
                 error: function(xhr, status, e){
-                    log.error('failed to add %s/%s', domain, id).
+                    log.error('failed to add %s/%s', domain, template.$id).
                         exception(e);
                     throw new Error(e);
                 }
