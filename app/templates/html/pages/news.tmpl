@@ -28,10 +28,10 @@
         {{ include $.env( "templates" ) + "html/pages/news.form.tmpl" }}
         </div>
         {{ else }}
-		<div class='span-12 column noborder ${ this.deleted ? "deleted" : ""}'>
-			{{ html this.description }}
+		<div class='span-12 push-3 column noborder ${ this.deleted ? "deleted" : ""}'>
+			{{ html $.creole(this.description) }}
 		</div>
-        <div class='span-6 column noborder'>
+        <div class='span-5 column noborder'>
 			<h4> ${ this.title } </h4>
 		</div>
         {{ /if }}

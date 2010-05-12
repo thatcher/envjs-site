@@ -562,6 +562,7 @@ a:hover{
 #news img{
 	margin:0 15px 15px 15px;
 	padding:3px;
+    display:none;
 }
 #news  a{
    text-decoration:none;
