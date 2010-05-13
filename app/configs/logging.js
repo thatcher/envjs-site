@@ -6,7 +6,7 @@
     
    $.logging([
         { category:"EnvJS",                         level:"INFO" },
-        { category:"EnvJS.Models",                  level:"INFO" },
+        { category:"EnvJS.Models",                  level:"DEBUG" },
         { category:"EnvJS.Views",                   level:"INFO" },
         { category:"EnvJS.Controllers",             level:"INFO" },
         { category:"EnvJS.Services",                level:"DEBUG" },

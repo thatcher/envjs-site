@@ -5,12 +5,12 @@
     <div class='first column span-5 colborder'>
         <h4>${ release.name }</h4>
         <h5>
-            <a href='${ $.env("root") + "doc/guide/" + release.$id.replace("envjs-","") }'>
+            <a href='${ $.env("root") + "doc/guides" }'>
                 Getting Started
             </a>
         </h5>
         <h5>
-            <a href='${ $.env("root") + "doc/api/" + release.$id.replace("envjs-","") }'>
+            <a href='${ $.env("root") + "doc/apis" }'>
                 API
             </a>
         </h5>
@@ -43,7 +43,7 @@
                 <a href='${ this.url }'>
                     ${ this.label }
                 </a>
-                ${ $(this.description).text() }
+                {{ html this.description }}
             </li>
             {{ /each }}
         </ol>

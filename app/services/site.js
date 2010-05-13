@@ -57,7 +57,7 @@
                         versions:   $(versions).map(function(index, version){
                             return {
                                 doc:{
-                                    link: $.env( "root" ) + "doc/guide/",
+                                    link: $.env( "root" ) + "doc/"+(type == 'guide' ? "apis" : "guides"),
                                     title: version.name
                                 },
                                 release: {
@@ -108,6 +108,7 @@
         },
         release: function(event){
             var id = event.params('id');
+            log.debug('looking up release id %s', id);
             Releases.forId(id, function(release){
                 Distributables.forRelease(id, function(distributables){
                     event.m({
