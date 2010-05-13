@@ -135,7 +135,7 @@
                 description:'Please provide a description.',
                 deprecated:'',
                 deleted:'',
-                example:'',
+                examples:'',
                 name:'newentry',
                 order:'99',
                 page:'running',

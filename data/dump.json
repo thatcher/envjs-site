@@ -50,7 +50,7 @@
             "$id": "options-intro",
             "deprecated": "",
             "page": "options",
-            "description": "Envjs provides a number of basic configurable options  which allow users to modify the default behavior  the code base. \r\n\r\n**Options, Hooks, and Platform** functions are all set, or overridden via the same mechanism, using Envjs as a function whose argument as an object is used to effectively replace the default value. \r\n\r\n**Options and Hooks** are the end-users API, while **Platform** is the developers API for providing a bridge to another host language and/or javascript language.",
+            "description": "Envjs provides a number of basic configurable options  which allow users to modify the default behavior  the code base. \r\n\r\n**Options, Hooks, and Platform** functions are all set, or overridden via the same mechanism, using Envjs as a function whose argument as an object is used to effectively replace the default value. \r\n\r\n**Options and Hooks** are the end-users API, while **Platform** is the developers API for providing a bridge to another host language and/or javascript language.\r\n\r\nOf course the nature of Javascript as a language make it easy to extend or replace the Envjs API including the core browser API's like DOM, HTML, XHR, etc. **We are also encouraging developer to package their adaptations as simple plugins that can be shared with the community**",
             "order": "01",
             "examples": "",
             "name": "intro",
@@ -602,7 +602,7 @@
             "$id": "running-intro",
             "deprecated": "",
             "page": "running",
-            "description": "**The goal of Envjs is to provide a highly portable javascript implementation of the Browser as a scripting environment ( //often referred to as a 'headless' browser// ).**\r\n\r\nThe default implementation is Rhino but many developers have and continue to develop bridges for running Envjs in Ruby, Python, and other host languages with the  SpiderMonkey and V8 javascript engines, to name a few.\r\n\r\nThe examples below will guide you through how to use Envjs as an end-user, noting in each example which platform the example pertains to. Platform developers should add equivalent examples whenever possible.\r\n\r\n//A Warning...//\r\n\r\n** Envjs will not automatically load and run the external javascript unless the script tags have the attribute type='text/envjs'.  To enable all external javascript files you only have to tell Envjs to do so, however //remember that all javascript executed will have read/write access to  your file system//**\r\n\r\nEnjoy!\r\n----\r\n",
+            "description": "**The goal of Envjs is to provide a highly portable javascript implementation of the Browser as a scripting environment ( //often referred to as a 'headless' browser// ).**\r\n\r\nThe default implementation is Rhino but many developers have and continue to develop bridges for running Envjs in Ruby, Python, and other host languages with the  SpiderMonkey and V8 javascript engines, to name a few.\r\n\r\nThe examples below will guide you through how to use Envjs as an end-user, noting in each example which platform the example pertains to. Platform developers should add equivalent examples whenever possible.\r\n\r\n//A Warning...//\r\n\r\n** Envjs will not automatically load and run the external javascript unless the script tags have the attribute type='text/envjs'.  To enable all external javascript files you only have to tell Envjs to do so, however //remember that all javascript executed will have read/write access to  your file system//**\r\n\r\nPlease be aware of the dangers of loading arbitrary code in an insecure environment.\r\n----\r\n",
             "order": "00",
             "examples": "",
             "name": "intro",
@@ -632,7 +632,7 @@
             "$id": "crawling-intro",
             "deprecated": "",
             "page": "crawling",
-            "description": "                            With Envjs, we refer to crawling loosely as the act of                injecting script into an HTML application.  This means you                could be adding jQuery to the browser environment and grepping                for all links, potentially storing them and following them, or                more simply allowing script to run while monitoring the DOM                for state changes or logging test results to the console.                                        Crawling can be acheived by combining a little shell scripting                with Envjs script loading hooks or with pure javascript.            ",
+            "description": "**With Envjs, we refer to crawling loosely as the act of injecting script into an HTML application.**  This means you could be adding jQuery to the browser environment and grepping for all links, potentially storing them and following them, or more simply allowing script to run while monitoring the DOM or state changes or logging test results to the console.\r\n\r\nCrawling can be achieved by combining a little shell scripting                with Envjs script loading hooks or with pure javascript.  ",
             "order": "00",
             "examples": "",
             "name": "intro",
@@ -647,7 +647,7 @@
             "$id": "running-rhino",
             "deprecated": "",
             "page": "running",
-            "description": "When running with generic rhino, you will only need the latest rhino,   (the rhino bundled with java 1.6 is not recent enough).  You will also need to write a javascript file that is responsible loading env.rhino.js, setting available options if any, and finally setting window.location                \r\n\r\n",
+            "description": "When running with generic rhino, you will only need the latest rhino,   (the rhino bundled with java 1.6 is not recent enough).  You will also need to write a javascript file that is responsible for loading env.rhino.js, setting available options if any, and finally setting window.location.\r\n\r\n",
             "order": "01",
             "examples": [
                 "#!bash\r\n#Running env.rhino.js from a script or the command line\r\n# Note the optimization setting\r\njava -jar js.jar -opt -1 myscript.js\r\n\r\n# or to simply invoke the javascript shell (you can then manually enter\r\n# the steps in the javascript example below)\r\njava -jar js.jar"
@@ -678,15 +678,15 @@
         },
         {
             "deleted": "",
-            "$id": "crawling-hooks",
+            "$id": "crawling-ajax",
             "deprecated": "",
             "page": "crawling",
-            "description": "Most javascript libraries provide a collection of unit tests that\n        run in the browser, and with a little tweeking Envjs can run these\n        tests in a 'headless' browser.  We use this internally as part of our\n        framework measurement for how well we are emulating the client-side\n        environment.\n\n  In this example we provide a use case of how to run the jQuery QUnit\n       tests after checking out the latest jquery source code.  This entire \n       example can be run with Envjs by executing the following command.\n  <pre class='box'>\n    \n    env-js $ bin/test-jquery.sh\n  </pre>\n\n\n  Aside from doing a little bash scripting magic to svn up, and copying\n       env.rhino.js and env-js.jar, Envjs doesn't do anything to modify the \n       actual html application that runs the jQuery QUnit tests.  Instead we use \n       hooks as follows:\n  <pre class='box'>\n    \nload('build/runtest/env.js');\n\n(function($env){\n    \n    $env('test/index.html', {\n        //let it load the script from the html\n        scriptTypes: {\n            'text/javascript'   :true\n        },\n        //afterScriptLoad is a powerful hook to let you\n        //modify globals or methods so Envjs can 'listen'\n        //to the scripts as they run\n        afterScriptLoad:{\n            'qunit/testrunner.js': function(){\n                //hook into qunit.log so we can get\n                //updates on the console about scripts\n                //as they run\n                var count = 0;\n                QUnit.log = function(result, message){\n                    $env.log('(' + (count++) + ')[' + \n                        ((!!result)?'PASS':'FAIL')+'] '+message);\n                };\n                //hook into qunit.done\n                QUnit.done = function(pass, fail){\n                    //when the tests are done we write out the\n                    //resulting dom to a local file so we can see the \n                    //tests results as reported by qunit\n                    $env.warn('Writing Results to File');\n                    //we dont want the scripts to run again when we \n                    //open the file so we change the script type\n                    jQuery('script').each(function(){\n                        this.type = 'text/envjs';\n                    });\n                    $env.writeToFile(\n                        document.documentElement.xml, \n                        $env.location('jqenv-'+Date.now()+'.html')\n                    );\n                };\n                \n                //modify some globals already defined by qunit\n                \n                \n                //jquery to run ajax tests locally\n                isLocal = false;\n                \n                //wrap qunit start and stop so we can prevent\n                //the tests from locking up if one throws an error\n                //while stop has been called\n                var unsafeStop = stop,\n                    unsafeStart = start,\n                    isStopped = null;\n                    \n                stop = function(){\n                    if(isStopped === null || !isStopped === false){\n                        $env.log('PAUSING QUNIT');\n                        isStopped = true;\n                        unsafeStop(arguments);\n                    }\n                };\n                start = function(){\n                    if(isStopped === null || isStopped === true ){\n                        $env.log('RESTARTING QUNIT');\n                        isStopped = false;\n                        unsafeStart(arguments);\n                    }\n                };\n                \n                //we know some ajax calls will fail becuase\n                //we are not running against a running server\n                //for php files\n                var handleError = jQuery.handleError;\n                jQuery.handleError = function(){\n                    ok(false, 'Ajax may have failed while running locally');\n                    try{\n                        handleError(arguments);\n                    }catch(e){}\n                    //allow tests to gracefully continue\n                    start();\n                };\n                \n                //allow unanticipated xhr error with no ajax.handleError \n                //callback (eg jQuery.getScript) to exit gracefully\n                $env.onInterrupt = function(){\n                    $env.info('thread interupt: gracefully continuing test');\n                    start();\n                };\n                $env.onScriptLoadError = function(script){\n                    Envjs.error('failed to load script \n'+script.text);    \n                    ok(false, 'Ajax may have failed to load '+\n                       'correct script while running locally');\n                    //allow tests to gracefully continue\n                    start();\n                };\n            }\n        }\n    });\n    \n})(Envjs);\n  </pre>\n",
+            "description": "**The safest way to crawl the wild wonderful web is to bootstrap the crawler with your own html page, load your favorite javascript libraries, and crawl with ajax.**  A basic bootstrap is very straight forward and much safer than assuming you can load any url with Envjs and trust it's not malicious...\r\n\r\nIn the following example we will use jQuery, but you should be able to easily adapt the examples for most libraries.  Remember one of the strengths of Envjs is that you can automate a crawler with cron jobs and multiple threads, explore the guts of the web, and build your own search indexes with your favorite javascript library.",
             "order": "01",
             "examples": [
-                ""
+                "load('dist/env.rhino.js');\r\nload('plugins/jquery.js');\r\n\r\nfunction scrape(url){\r\n    \r\n    // we can assign meangingful weights to these\r\n    var data = {\r\n        $id: url.replace('/', '_','g').replace(':', '_', 'g'),\r\n        url: url,\r\n        full_text: $(document.body).text(),\r\n        title: document.title,\r\n        headings: $('h1, h2, h3, h4, h5, h6').text(),\r\n        description: $('meta[name=description]').attr('content'),\r\n        keywords: $('meta[name=keywords]').attr('content').split(',')\r\n    };\r\n    \r\n    $.ajax({\r\n        url:'http://localhost:8080/rest/index/'+data.$id,\r\n        contentType:'application/json',\r\n        dataType:'json',\r\n        type: 'post',\r\n        async: false,\r\n        data: JSON.stringify(data),\r\n        processData: false,\r\n        success: function(){\r\n            console.log('indexed document %s', url);\r\n        }\r\n    });\r\n}\r\n\r\n$(function(){\r\n\r\n    // delete the index to start fresh\r\n    $.ajax({\r\n        url:'http://localhost:8080/rest/index/',\r\n        contentType:'application/json',\r\n        dataType:'json',\r\n        type:'delete',\r\n        async: false,\r\n        success: function(){\r\n            console.log('deleted search index');\r\n        }\r\n    });\r\n    \r\n    // create the search index we will populate with \r\n    // our simple crawl\r\n    $.ajax({\r\n        url:'http://localhost:8080/rest/index/',\r\n        contentType:'application/json',\r\n        dataType:'json',\r\n        type:'put',\r\n        async: false,\r\n        success: function(){\r\n            console.log('created search index');\r\n        }\r\n    });\r\n    \r\n    // index this document\r\n    scrape(document.location.toString());\r\n    \r\n    var links = [];\r\n    $('a[href]').each(function(){\r\n        var href = $(this).attr('href');\r\n        if( $.inArray(href, links) == -1 && !href.match(/^(\\s)*http/) ){\r\n            //we only want to crawl local links\r\n            links.push(href);\r\n        }\r\n    });\r\n    for(var i = 0; i < links.length; i++){\r\n        console.log('loaded html from %s', links[i]);\r\n        try{\r\n            document.location = Envjs.uri(links[i]);\r\n            scrape(links[i]);\r\n        }catch(e){\r\n            console.log('failed to load %s \\n %s', links[i], e);\r\n        }\r\n    }\r\n    \r\n\r\n});\r\n\r\nwindow.location = 'http://localhost:8080/';"
             ],
-            "name": "hooks",
+            "name": "ajax",
             "version": [
                 "1.0.x",
                 "1.1.rc2",
@@ -717,9 +717,24 @@
             "description": "**Optionally you can turn on/off settings by passing an options object to Envjs as a function**\r\n        \r\nIn this example we enable loading and execution of external javascript files with the scriptTypes setting and enable DEBUG logging levels.\r\n",
             "order": "02",
             "examples": [
-                "Envjs({\r\n    logLevel: Envjs.DEBUG,\r\n    scriptTypes: {\r\n        'text/javascript': true\r\n    }\r\n});"
+                "Envjs({\r\n    scriptTypes: {\r\n        '': true, //anonymous and inline\r\n        'text/javascript': true\r\n    },\r\n    afterScriptLoad:{\r\n        \"testrunner\": function(script){\r\n            var count = 0,\r\n                module;\r\n            // track test modules so we can include them in logs\r\n            QUnit.moduleStart = function(name, settings) {\r\n                module = name;\r\n            };\r\n            // hookinto QUnit log so we can log test results \r\n            QUnit.log = function(result, message){\r\n                console.log(\r\n                     '{%s}(%s)[%s] %s ',\r\n                     module, \r\n                     count++, \r\n                     result ? 'PASS' : 'FAIL', \r\n                     message\r\n                );\r\n            };\r\n            // hook into qunit.done and write resulting html to a\r\n            // a new file.  Be careful to neutralize script tags so \r\n            // opening the script in the browser allows the results \r\n            // to act as a static report without re-running tests\r\n            QUnit.done = function(fail, pass){\r\n                console.log('PASSED: %s FAILED: %s', pass, fail);\r\n                //Writing Results to File\r\n                jQuery('script').each(function(){\r\n                    this.type = 'text/envjs';\r\n                });\r\n                Envjs.writeToFile(\r\n                    document.documentElement.outerHTML, \r\n                    Envjs.uri('results.html')\r\n                );\r\n           };\r\n        }\r\n    }\r\n});"
             ],
             "name": "configure",
+            "version": [
+                "1.0.x",
+                "1.1.rc2",
+                "1.2.11"
+            ]
+        },
+        {
+            "deleted": "",
+            "$id": "crawling-testing",
+            "deprecated": "",
+            "page": "crawling",
+            "description": "Please provide a description.",
+            "order": "02",
+            "examples": "",
+            "name": "testing",
             "version": [
                 "1.0.x",
                 "1.1.rc2",
@@ -731,19 +746,24 @@
             "$id": "crawling-scripting",
             "deprecated": "",
             "page": "crawling",
-            "description": "\n  You can also simply load the javascript libraries you want\n       to use and then script away just like you would in a browser. This\n       example shows how to use jquery to check you web pages for broken\n       links and could easy be integrated into a continous testing process.\n  <pre class='box'>\n    \n    //load libraries\n    load('env.rhino.js');\n    load('jquery-1.3.2.js');\n    \n    //configure settings\n    Envjs({\n       logLevel:Envjs.DEBUG\n    });\n    \n    //pick a html app to load\n    window.location = 'http://test.example.com/some/file.html';\n    \n    //script away\n    $('a').each(function(){\n       //check all the non-local links\n       var url = $(this).attr('href'); \n       if(!url.match('#')){\n           var _this = this;\n           $.ajax({\n              'type':'GET',\n              'url':url,\n              'async':false,\n              'success':function(){\n                 Envjs.debug('url was ok : '+url);\n              },\n              'error': function(){\n                 Envjs.error('url was broken! : '+url);\n              }\n           });\n       }\n    });\n  </pre>\n\n\n  Of course other JavaScript frameworks have their own\n        methods of setup, but the general pattern is:\n  <pre class='box'>\n    \n    // load env.js\n    // configure Envjs\n    // set window.location\n    // load and run your script\n  </pre>\n",
-            "order": "02",
+            "description": "You can also simply load the javascript libraries you want\r\n       to use and then script away just like you would in a browser. This\r\n       example shows how to use jquery to check you web pages for broken\r\n       links and could easy be integrated into a continous testing process.\r\n  <pre class='box'>\r\n    \r\n    //load libraries\r\n    load('env.rhino.js');\r\n    load('jquery.js');\r\n    \r\n    //configure settings\r\n    Envjs({\r\n       logLevel:Envjs.DEBUG\r\n    });\r\n    \r\n    //pick a html app to load\r\n    window.location = 'http://test.example.com/some/file.html';\r\n    \r\n    //script away\r\n    $('a').each(function(){\r\n       //check all the non-local links\r\n       var url = $(this).attr('href'); \r\n       if(!url.match('#')){\r\n           var _this = this;\r\n           $.ajax({\r\n              'type':'GET',\r\n              'url':url,\r\n              'async':false,\r\n              'success':function(){\r\n                 Envjs.debug('url was ok : '+url);\r\n              },\r\n              'error': function(){\r\n                 Envjs.error('url was broken! : '+url);\r\n              }\r\n           });\r\n       }\r\n    });\r\n  </pre>\r\n\r\n\r\n  Of course other JavaScript frameworks have their own\r\n        methods of setup, but the general pattern is:\r\n  <pre class='box'>\r\n    \r\n    // load env.js\r\n    // configure Envjs\r\n    // set window.location\r\n    // load and run your script\r\n  </pre>\r\n",
+            "order": "03",
             "examples": [
                 ""
             ],
-            "name": "scripting"
+            "name": "scripting",
+            "version": [
+                "1.0.x",
+                "1.1.rc2",
+                "1.2.11"
+            ]
         },
         {
             "deleted": "",
             "$id": "running-console",
             "deprecated": "",
             "page": "running",
-            "description": "**Envjs can also be run in a console mode as mentioned above and its a great way to explore its features.** //Rhino 1.7rc2 provides a great console.//  You may find on Mac OSX that you up/down/left/right arrows and tab complete dont work.  If this occurs just add [[http://jline.sourceforge.net/|JLine]] to the mix.\r\n\r\nIn the following example console session, you'll notice that after loading the env.rhino.js script, we enable the scriptType 'text/javascript'.  The we can simply open a url, and the javascript in that page will be loaded (in this case making jQuery automatically available to use).",
+            "description": "**Envjs can also be run in a console mode as mentioned above and its a great way to explore its features.** //Rhino 1.7rc2 provides a great console.//  You may find on Mac OSX that your up/down/left/right arrows and tab complete dont work.  If this occurs just add [[http://jline.sourceforge.net/|JLine]] to the mix.\r\n\r\nIn the following example console session, you'll notice that after loading the env.rhino.js script, we enable the scriptType 'text/javascript'.  The we can simply open a url, and the javascript in that page will be loaded (in this case making jQuery automatically available to use).",
             "order": "03",
             "examples": [
                 "#!bash\r\n#in case your up/down/left/right arrows dont work in console mode\r\njava -cp WEB-INF/lib/js.jar:WEB-INF/lib/jline.jar \\\r\n    jline.ConsoleRunner org.mozilla.javascript.tools.shell.Main -opt -1 ",
@@ -765,7 +785,7 @@
             "order": "03",
             "examples": [
                 "//This is how we prefer you do it, just like the browser...\r\nwindow.location = 'some/file.html';\r\n\r\n//The HTML application does not need to be local!\r\nwindow.location = 'http://example.com/some/file.html';",
-                "// The following are deprecated and valid but documented \r\n// for backward compatibility\r\nEnvjs('some/file.html');\r\n\r\n// or equivalently you can take care of settings and location\r\nEnvjs('some/file.html', {\r\n    logLevel: Envjs.DEBUG,\r\n    scriptTypes: {\r\n       'text/javascript': true\r\n    }\r\n});"
+                "// The following are deprecated and valid but documented \r\n// for backward compatibility\r\nEnvjs('some/file.html');\r\n\r\n// or equivalently you can take care of settings and location\r\nEnvjs('some/file.html', {\r\n    scriptTypes: {\r\n       'text/javascript': true\r\n    }\r\n});"
             ],
             "name": "go",
             "version": [

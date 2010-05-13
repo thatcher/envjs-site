@@ -13,6 +13,7 @@
         src='${ $.env("root")+"plugins/highlighter/shBrushBash.js" }'></script>
 <script type="text/javascript" 
         src='${ $.env("root")+"plugins/highlighter/shBrushJava.js" }'></script>
+        
 <link type="text/css" rel="stylesheet" 
       href='${ $.env("root")+"css/highlighter/shCore.css" }'/>
 <link type="text/css" rel="stylesheet"
@@ -28,12 +29,16 @@
 {{ block main }}
 <div id='doc'>
     <h3>
-        <a href='${ links.docs }'>
+        <a  href="${ links.docs }">
             &lt; documentation
         </a>
     </h3>
     <div id='table_of_contents'
          class=' column span-4 colborder'>
+             
+        <h2>
+        ${ type == "guides" ? "Guide" : "API" }
+        </h2>
         {{ each(i, page) pages }}
         <h4>${ page }</h4>
         <ul>
@@ -94,24 +99,23 @@
             class='${ this.deleted ? "deleted" : ""}'>
             {{ if "intro" === this.name && i === 0 && !admin}}
             <div id='versions' class='last column span-4'>
+                <span class='quiet'>see also..</span>
                 <h4 >
-                    <strong>${ title } ${ this.id }</strong>
+                    <a href='${ $.env("root") + "doc/" + (type == "guides" ? "apis" : "guides") }'>
+                        ${ type == "guides" ? "API" : "Guide" }
+                    </a>
                 </h4>
                 
                 <img src='${ $.env( "root" ) + "images/icon-brown.png" }' 
                      alt='${ this.title } ${ this.id }'
                      height='150px'/>
                      <br/>
-                <strong>releases</strong>
                 <ul>
                     {{ each versions }}
                     <li>
                         <a href='${ this.doc.link }'>
                             ${ this.doc.title }
                         </a> 
-                        <a href='${ this.release.link }'>
-                            ${ this.release.title }
-                        </a>
                         <br/>
                      </li>
                     {{ /each }}
