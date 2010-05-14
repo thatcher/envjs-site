@@ -156,6 +156,11 @@
                 template:  $.env( 'templates' ) + 'html/pages/support.tmpl'
             }).render();
         },
+        test: function(event){
+            event.m({
+                template: $.env( 'templates' ) + 'html/pages/test.tmpl'
+            }).render()
+        }
         
     });
     

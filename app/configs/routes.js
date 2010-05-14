@@ -14,6 +14,7 @@
                  { urls :"/admin/|:action|/?$",                       controller:"#adminService"  },
                  { urls :"/admin/|:action|/|:domain|/?$",             controller:"#adminService"  },
                  { urls :"/admin/|:action|/|:domain|/|:id|/?$",       controller:"#adminService"  },
+                 { urls :"/test/?$",                                   controller:"#siteService",  action:'test'},
                  { urls :"/docs/?$",                                  controller:"#siteService",  action:'docs' },
                  { urls :"/doc/<:type(\\w+):>/?$",                    controller:"#siteService",  action:'doc' },
                  { urls :"/events/?$",                                controller:"#siteService",  action:'events' },

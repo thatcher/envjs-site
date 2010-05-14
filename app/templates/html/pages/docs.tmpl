@@ -1,4 +1,9 @@
 {{ extend $.env( "templates" ) + "html/base.tmpl" }}
+
+{{ block title }}
+<title>Envjs Documentation</title>
+{{ /block }}
+
 {{ block main }}
 <div id='docs'>
     <h3>documentation</h3>
