@@ -1,9 +1,35 @@
-To run this application locally, just drop it into you Tomcat or Jetty 
-webapps folder and run.  
+To run dev server:
 
-Changing any of the javascript files while the server
-is running will trigger the webapp to reload so you don't have to restart
-the server manually to see changes take effect.
+/path/to/appengine/bin/dev_appserver.sh /opt/webapps/envjs-site/
+
+you should now be able to see:
+
+http://localhost:8080/
+
+To build your database visit these urls in order
+
+http://localhost:8080/manage/reset
+http://localhost:8080/manage/syncdb
+
+You should now be able to see:
+
+http://localhost:8080/rest/
+http://localhost:8080/rest/guides/
+etc
+
+If you edit your database through the rest interfaces or from
+the admin interfaces (add ?admin to the pages to see admin interfaces),
+then you can get a database dump from:
+
+http://localhost:8080/manage/dumpdata
+
+to deploy to production (first make sure to point at your own app engine id in 
+WEB-INF/appengine-web.xml)
+
+/path/to/appengine/appcfg.sh update /opt/webapps/envjs-site/
+
+Currently we are only supporting AppEngine SDK 1.2.1, but it's only because
+we havent had time to catch up.  You can help!
 
 Good luck and have fun javascripting!
 

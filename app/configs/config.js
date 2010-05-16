@@ -16,7 +16,8 @@ var EnvJS = {
         "EnvJS.Models", 
         "EnvJS.Views", 
         "EnvJS.Services",
-        "GAE.Services"
+        "GAE.Services",
+        "Claypool.Services"
     ]);
     
 })(jQuery);

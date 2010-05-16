@@ -7,8 +7,7 @@
 {{ block main }}
 <div id='docs'>
     <h3>documentation</h3>
-    {{ each versions }}
-    <h4 style='text-align:center'>${ this.name }</h4>
+    <h4 style='text-align:center'>Latest</h4>
     <div class='first column span-11 colborder '>
         <ul>
             <li>
@@ -16,7 +15,7 @@
                     <strong> Guide </strong>
                     <img
                         src=' ${ $.env("root")+"images/icon-green.png" }'
-                        alt='Guide ${ this.$id }'
+                        alt='Guide '
                         height='50px'
                     />
                 </a>
@@ -29,7 +28,7 @@
                 <a href='${ $.env("root")+"doc/apis" }' >
                     <img
                         src=' ${ $.env("root")+"images/icon-brown.png" }'
-                        alt='API ${ this.$id }'
+                        alt='API '
                         height='50px'
                     />
                     <strong> API </strong>
@@ -37,6 +36,5 @@
             </li>
         </ul>
     </div>
-    {{ /each }}
 </div>
 {{ /block }}

@@ -7,6 +7,27 @@
 {{ block main }}
 <div id='release'>
     <h3><a href='${ $.env("root")+"releases" }'>&lt; releases</a></h3>
+    
+    {{ if admin }}
+    <div style='clear:both;text-align:center;'>
+        <span class="ss_sprite  ss_add">
+            <a href='${ $.env( "root" ) + "admin/add/releases/" }'>
+                Add entry
+            </a>
+            <br/>
+            <a id='show_deleted'
+               href='#show/deleted'>
+               show deleted entries
+            </a>
+            <span> | </span>
+            <a id='hide_deleted'
+               href='#hide/deleted'>
+               hide deleted entries
+            </a>
+        </span>
+    </div>
+    {{ /if }}
+    
     <div class='first column span-5 colborder'>
         <h4>${ release.name }</h4>
         <h5>
@@ -25,6 +46,7 @@
      
     <div id='cover' 
          class='column span-6 colborder'>
+        <h6>Everything</h6>
             <a href='${ release.zip }'>
                 <img 
                     src='${ $.env("root") + "images/zip.jpg" }'
@@ -42,47 +64,34 @@
     </div>
     <div id='media' 
          class='column span-9'>
+        <h6>All you need.</h6>
         <ol class='clear'>
             {{ each distributables }}
             <li>
                 <a href='${ this.url }'>
-                    ${ this.label }
+                    <strong>${ this.label }</strong>
                 </a>
+                <img src='/images/icon-green-50px.jpg' height='30px'/>
+                <br/>
                 {{ html this.description }}
             </li>
             {{ /each }}
         </ol>
+        
     </div>
     
-    <div id='description' class='column span-22'>
-        <div class='column span-18 push-3'>
-            {{ html release.description }}
-            <div class='column'>
-                <h5>
-                    <a href='${ release.readme }' target='_blank'>
-                        README
-                    </a>
-                </h5>
-            </div>
-            <div class='column'>
-                <ul class='clear'>
+    <div id='description' class=' span-22'>
+        <div class='column prepend-2 span-12'>
+            {{ html $.creole(release.description) }}
+        </div>
+            <div class='column span-7' style='margin-top:30px;'>
+                <hr/>
+                <ul>
                     {{ each release.notes }}
                         <li> ${ this } </li>
                     {{ /each }}
                 </ul>
             </div>
-            <div class='column'>
-                <strong>jQuery 1.3.2</strong>
-                <img src='${ 
-                     "http://chart.apis.google.com/chart"+
-                     "?chs=150x75"+
-                     "&cht=gom"+
-                     "&chd=t:95"+
-                     "&chl=1348 of 1420" 
-                }'/>
-            </div>
-                
-        </div>
     </div>
 </div>
 {{ /block }}

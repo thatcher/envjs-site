@@ -539,34 +539,34 @@
         {
             "description": "pure js implementation, just add rhino (no frames support)",
             "deleted": "",
-            "$id": "env.rhino.1.0.js",
-            "url": "/dist/env.rhino.1.0.js",
-            "label": "env.rhino.js",
-            "release": "envjs-1.0"
+            "$id": "env.rhino.1.0.x.js",
+            "url": "http://github.com/thatcher/env-js/raw/1.0.x/dist/env.rhino.js",
+            "release": "envjs-1.0.x",
+            "label": "env.rhino.js"
         },
         {
-            "description": "pure js implementation, just add rhino (no frames support)",
+            "description": "add to class path along with rhino for frames support",
             "deleted": "",
-            "$id": "env.rhino.1.1.js",
-            "url": "/dist/env.rhino.1.1.js",
-            "label": "env.rhino.js",
-            "release": "envjs-1.1"
+            "$id": "env.frames.1.0.x.jar",
+            "url": "http://github.com/thatcher/env-js/raw/1.0.x/dist/env.frames.jar",
+            "release": "envjs-1.0.x",
+            "label": "env.frames.jar"
         },
         {
-            "description": "our convenient repackage of the latest rhino with envjs frame support.",
+            "description": "our convenient repackage of the latest rhino with envjs frame support, html jtidy, and jline console support.",
             "deleted": "",
-            "$id": "envjs.1.1.jar",
-            "url": "/dist/env-js-1.1.jar",
-            "label": "env-js.jar",
-            "release": "envjs-1.1"
+            "$id": "envjs.1.0.x.jar",
+            "url": "http://github.com/thatcher/env-js/raw/1.0.x/dist/env-js.jar",
+            "release": "envjs-1.0.x",
+            "label": "env-js.jar"
         },
         {
             "description": "pure js implementation, just add rhino",
             "deleted": "",
-            "$id": "env.rhino.1.2.js",
-            "url": "/dist/env.rhino.1.2.js",
-            "label": "env.rhino.js",
-            "release": "envjs-1.2"
+            "$id": "env.rhino.1.2.11.js",
+            "url": "http://github.com/thatcher/env-js/raw/1.2.11/dist/env.rhino.js",
+            "release": "envjs-1.2.11",
+            "label": "env.rhino.js"
         }
     ],
     "events": [
@@ -577,17 +577,8 @@
             "description": "                Justin Meyer will be covering JMVC which uses                Envjs as part of his testing triage.",
             "image": "images/logo_jquery_53x53.jpg",
             "url": "http://events.jquery.com/jquery-conference-2009/",
-            "date": "Sept 13th, 2009",
-            "location": "Microsoft Cambridge, Boston MA "
-        },
-        {
-            "deleted": "",
-            "$id": "envjs1273921544775_36_31063591",
-            "title": "Envjs Meetup in DC?",
-            "description": "The Envjs Team is hoping to get everyone together, even if it's at another event.  We missed JSConf this year but want to get folks connected if possible.  Likely an east coast, near DC event?  Let us know where you are.",
-            "image": "images/icon-brown_50px.jpg",
-            "location": "Are you interested in helping us organize a meetup?",
-            "date": "2010 - TDB"
+            "location": "Microsoft Cambridge, Boston MA ",
+            "date": "Sept 13th, 2009"
         }
     ],
     "guides": [
@@ -853,27 +844,9 @@
     "releases": [
         {
             "deleted": "",
-            "$id": "envjs-1.2",
-            "repository": "http://github.com/thatcher/env-js/",
-            "zip": "http://github.com/thatcher/env-js/zipball/trunk",
-            "tar": "http://github.com/thatcher/env-js/tarball/trunk",
-            "notes": [
-                "HTML5 Parser",
-                "Refactored code base",
-                "Unit tests run in Firefox",
-                "No need to call Envjs.wait manually",
-                "Frame support no longer requires custom rhino jar"
-            ],
-            "description": "Our team is proud to release a cleaner code base with more features and even less platform bridge code. Envjs 1.2 is the most feature complete and solid release yet.",
-            "source": ["/dist/env.rhino.js"],
-            "name": "1.2 - Latest"
-        },
-        {
-            "deleted": "",
-            "$id": "envjs-1.1",
-            "repository": "http://github.com/thatcher/env-js/tree/1.1.0.rc2",
-            "zip": "http://github.com/thatcher/env-js/zipball/1.1.0.rc2",
-            "tar": "http://github.com/thatcher/env-js/tarball/1.1.0.rc2",
+            "$id": "envjs-1.0.x",
+            "tar": "http://github.com/thatcher/env-js/tarball/master",
+            "readme": "http://github.com/thatcher/env-js/raw/master/README",
             "notes": [
                 "Support for frames and iframes!",
                 "Improved error handling in XHR.",
@@ -881,22 +854,9 @@
                 "Synchronized thread for window timers!",
                 "1340+ tests pass in jQuery 1.3.2"
             ],
-            "description": "More complete implementation of the core browser javascript apis, including frame support, better html parsing, correct timer implementation and more. ",    
-            "source": ["/dist/env.rhino-1.1.js", "/dist/env-js-1.1.jar"],
-            "name": "1.1"
-        },
-        {
-            "deleted": "",
-            "$id": "envjs-1.0",
-            "repository": "http://github.com/thatcher/env-js/tree/1.0.0",
-            "zip": "http://github.com/thatcher/env-js/zipball/1.0.0",
-            "tar": "http://github.com/thatcher/env-js/zipball/1.0.0",
-            "notes": [
-                "Basic support for most browser API's"
-            ],
-            "description": "The first official release.  Solid and small.  Covers enough of the browser api to run a lot of apps",
-            "source": ["/dist/env.rhino-1.0.js"],
-            "name": "1.0"
+            "description": "                We are rapidly approaching our milestone of realizing                a complete implementation of the core browser javascript                apis, and finally rolling out release candidates.                There are many notable improvements so please checkout                the release notes.  We are also (finally) adding a                docs section that will cover all the basic configurables,                hooks, and samples you need to get rolling!                ",
+            "zip": "http://github.com/thatcher/env-js/zipball/master",
+            "name": "Latest Official"
         }
     ]
 }

@@ -7,33 +7,60 @@
 {{ block main }}
 <div id='events' >
     <h3>events</h3>
-    <div style='width:auto;overflow-x:auto;'>
-        {{ each events }}
-        <div class='event column span-4 colborder'>
-            <span> ${ this.date } </span>
-            <strong> ${ this.title } </strong>
-            <br/>
-            <a href='${ this.url }'>
-                <img
-                    src='${ $.env("root") + this.image }'
-                    alt='${ this.title }'
-                    width='60px'
-                />
+    {{ if admin }}
+    <div style='clear:both;text-align:center;'>
+        <span class="ss_sprite  ss_add">
+            <a href='${ $.env( "root" ) + "admin/add/events/" }'>
+                Add entry
             </a>
-            <p>
-                <a href='${ this.url }'>
-                    ${ this.location }
-                </a>
-            </p>
-            {{ html this.description }}
-            {{ if $i % 6 === 5 }}
-            <div style='margin-top:8em;clear:both;'>
-                <h6>more...</h6>
-                <hr/>
-             </div>
-            {{ /if }}
-        </div>
-        {{ /each }}
+            <br/>
+            <a id='show_deleted'
+               href='#show/deleted'>
+               show deleted entries
+            </a>
+            <span> | </span>
+            <a id='hide_deleted'
+               href='#hide/deleted'>
+               hide deleted entries
+            </a>
+        </span>
+    </div>
+    {{ /if }}
+    <div style='width:auto;overflow-x:auto;'>
+    {{ each events }}
+        
+    {{ if admin }}
+    <div class='event column colborder ${ this.deleted ? "deleted" : ""}'>
+    {{ include $.env( "templates" ) + "html/pages/events.form.tmpl" }}
+    </div>
+    {{ else }}
+    <div class='event column span-4 colborder'>
+        <span> ${ this.date } </span>
+        <strong> ${ this.title } </strong>
+        <br/>
+        <a href='${ this.url }'>
+            <img
+                src='${ $.env("root") + this.image }'
+                alt='${ this.title }'
+                width='60px'
+            />
+        </a>
+        <p>
+            <a href='${ this.url }'>
+                ${ this.location }
+            </a>
+        </p>
+        {{ html this.description }}
+        {{ if $i % 6 === 5 }}
+        <div style='margin-top:8em;clear:both;'>
+            <h6>more...</h6>
+            <hr/>
+         </div>
+        {{ /if }}
+    </div>
+    {{ /if }}
+        
+    {{ /each }}
     </div>      
 </div>
 {{ /block }}

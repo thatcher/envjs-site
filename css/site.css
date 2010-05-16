@@ -204,12 +204,8 @@ a:hover{
     display:inline;
 }
 #newreleases ul li img{
-    float:right;
-    margin:1em;
-    padding:0.5em;
-}
-#newreleases ul li img:hover{
-    border:1px dashed;
+    float:left;
+    margin:0 10px;
 }
 
 
@@ -301,6 +297,14 @@ a:hover{
     border:  1px dotted ;
     padding:1em;
     margin:1em;
+}
+#release div li img{
+    border:  none ;
+    padding:0;
+    margin:0;
+}
+#release div ol li{
+    list-style: none;
 }
 #release div.first{
     text-align:right;
@@ -579,6 +583,7 @@ a:hover{
     border-left:1px solid ;
     border-right:1px solid ;
     border-bottom:1px solid ;
+    padding-top:30px;
 }
 #footer div{
     margin-top:0px;

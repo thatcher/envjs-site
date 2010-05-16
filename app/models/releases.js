@@ -100,7 +100,7 @@
             var _this = this;
             this.find({
                 async:false,
-                select:"new Query('releases').addFilter('deleted', $EQUAL, '')",
+                select:"new Query('releases').addFilter('deleted', $EQUAL, '').addSort('name')",
                 success:function(results){
                     log.debug('loaded all %s', results.data.length );
                     callback(results.data.reverse());

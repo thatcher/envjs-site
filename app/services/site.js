@@ -85,9 +85,9 @@
             });
         },
         home: function(event){
-            Releases.recent(2, function(releases){
+            Releases.recent(3, function(releases){
                 News.recent(3, function(news){
-                    Events.recent(4, function(events){
+                    Events.recent(2, function(events){
                         event.m({
                             releases: releases,
                             news:     news,

@@ -1,0 +1,99 @@
+
+<form action='${ $.env("root") }admin/save/events/${ this.$id }' 
+      method='post'>
+          
+    <table>
+        <thead/>
+        <tbody>
+            
+            <tr>
+                <td colspan='1'>
+                    {{ if admin && this.deleted }}
+                    <span class="ss_sprite  ss_add">
+                        <a href='${ $.env("root") }admin/restore/events/${ this.$id }'> 
+                             restore '${ this.title }'
+                        </a>
+                    </span>
+                    {{ elseif admin }}
+                    <span class="ss_sprite  ss_delete">
+                        <a href='${ $.env("root") }admin/remove/neweventss/${ this.$id }'> 
+                             delete '${ this.title }'
+                        </a>
+                    </span>
+                    {{ /if }}
+                    <input type='hidden'
+                           name='deleted'
+                           value='${ this.deleted }'/>
+                </td>
+            </tr>
+            
+            <tr>
+                <td>
+                <label for='${ this.$id }-title'>
+                    Title
+                </label>
+                <input type='text' 
+                       name='title' 
+                       value='${ this.title }'/>
+                </td>
+            </tr>
+            
+            <tr>
+                <td>
+                <label for='${ this.$id }-date'>
+                    Date
+                </label>
+                <input type='text' 
+                       name='date' 
+                       value='${ this.date }'/>
+                </td>
+            </tr>
+            
+            <tr>
+                <td>
+                <label for='${ this.$id }-image'>
+                    Image
+                </label>
+                <input type='text' 
+                       name='image' 
+                       value='${ this.image }'/>
+                </td>
+            </tr>
+            
+
+            <tr>
+                <td>
+                <label for='${ this.$id }-location'>
+                    Location
+                </label>
+                <textarea  style='height:100px'
+                           id='${ this.$id }-location'
+                           name='location'>${ this.location }</textarea>
+                </td>
+            </tr>
+            
+            <tr>
+                <td>
+                <label for='${ this.$id }-description'>
+                    Description
+                </label>
+                <textarea  style='height:200px'
+                           id='${ this.$id }-description'
+                           name='description'>${ this.description }</textarea>
+                </td>
+            </tr>
+            
+            <tr>
+                <td>
+                    <input type='hidden'
+                           name='$id'
+                           value='${ this.$id }'/>
+                    <input type='submit' 
+                           class='submit'
+                           value='save'/>
+                </td>
+            </tr>
+        </tbody>
+    </table> 
+
+</form>

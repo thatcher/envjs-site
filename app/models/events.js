@@ -69,8 +69,13 @@
                 async:false,
                 select:"new Query('events').addFilter('deleted', $EQUAL, '')",
                 success:function(results){
-                    log.debug('loaded all %s events', results.data.length );
-                    callback(results.data.reverse());
+                    var data = [];
+                    $(results.data).each(function(){
+                        if(this.date.match(/2010/))
+                            data.push(this)
+                    });
+                    log.debug('loaded all current %s events', data.length );
+                    callback(data.reverse());
                 },
                 error: function(xhr, status, e){
                     log.error('failed to load all events.', e);
@@ -86,7 +91,7 @@
         },
         template: function(options){
             return $.extend(true, {
-                $id:            $.uuid(),
+                $id:            'envjs'+$.uuid(),
                 title:          $.title(3, false),
                 date:           new Date()+'',
                 location:       $.words(5, false),

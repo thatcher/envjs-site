@@ -4,18 +4,12 @@
 (function($, $S){
     
     var log,
-        models = [
-            'apis',
-            'distributables',
-            'events',
-            'guides',
-            'news',
-            'releases'
-        ];
+        db;
     
     $S.Manage = function(options){
         $.extend(true, this, options);
         log = $.logger('EnvJS.Services.Manage');
+        db = new $.gdb($.env('db'));
     };
     
     $.extend($S.Manage.prototype, {
@@ -23,21 +17,39 @@
             var command = event.params('command'),
                 target = event.params('target');
             log.debug("handling command %s %s", command, target)
-            Commands[command](target?[target]:models, event);
+            Commands[command](target, event);
             if(!('dumpdata' == command)){
-                event.response.body = command + ' executed successfully';
+                event.response.headers =  {
+                    status:   302,
+                    "Location": '/rest/'
+                }
             }
         }
     });
     
     var Commands = {
         reset: function(targets){
+            var domains;
+            db.get({
+                async: false,
+                success: function(result){
+                    domains = result.domains;
+                    log.debug('loaded domains');
+                },
+                error: function(xhr, status, e){
+                    log.error('failed to get db domains');
+                }
+            });
             //drops domains (tables) for each model
-            $(targets).each(function(index, value){
-                $.$('#'+value+'Model').destroy({
-                    async:false,
-                    success:function(result){
-                        log.info(value+' domain destroyed');
+            $(domains).each(function(index, domain){
+                db.destroy({
+                    domain: domain,
+                    async: false,
+                    success: function(result){
+                        log.info('destroyed domain %s', domain);
+                    },
+                    error: function(xhr, status, e){
+                        log.error('failed to delete domain %s', domain);
                     }
                 });
             });
@@ -45,10 +57,12 @@
         syncdb: function(targets){
             //creates domain (tables) for each model
             var data,
-                data_url = $.env('data')+'dump.json?'+$.uuid();
+                data_url = $.env('data')+'dump.json?'+$.uuid(),
+                domain;
+                
             log.info('loading initial data from %s', data_url);
             $.ajax({
-                type:'GET',
+                type:'get',
                 async:false,
                 url:data_url,
                 dataType:'text',
@@ -60,42 +74,58 @@
                     log.error('failed [%s] to load initial data %s', status, e);
                 }
             });
-                
-            $(targets).each(function(index, value){
-                var domain = $.$('#'+value+'Model');
-                    
-                log.info('creating domain %s', value);
-                domain.create({
+            
+            for(domain in data){
+                db.create({
+                    domain: domain,
                     async:false,
                     success:function(result){
-                        log.info(value+' domain available');
+                        log.info('created domain %s', domain);
                     }
                 });
-                
-                domain.save({
+                db.save({
                     async:false,
                     batch:true,
-                    data:data[value],
+                    domain: domain,
+                    data:data[domain],
                     success: function(){
-                        log.info('%s batch save successful', value);
+                        log.info('batch save successful %s ', domain);
                     },
                     error: function(){
-                        log.error('%s batch save failed');
+                        log.error('batch save failed %s', domain);
                     }
                 });
-            });
+            }
         },
         dumpdata: function(targets, event){
             var data = {};
-            $(targets).each(function(index, value){
-                var domain = $.$('#'+value+'Model');
-                    
-                domain.all(function(results){
-                    log.info('%s domain dump successful', value);
-                    data[value] = results;
-                });
+            var domains;
                 
+            db.get({
+                async: false,
+                success: function(result){
+                    domains = result.domains;
+                    log.debug('loaded domains');
+                },
+                error: function(xhr, status, e){
+                    log.error('failed to get db domains');
+                }
             });
+            
+            $(domains).each(function(i, domain){
+                db.find({
+                    select:"new Query('"+domain+"')",
+                    async: false,
+                    success: function(result){
+                        log.info('found %s entries in %s', result.data.length, domain);
+                        data[domain] = result.data;
+                    },
+                    error: function(xhr, status, e){
+                        ok(false, 'failed load entries from %s', domain);
+                    }
+                });
+            });
+            
             event.write($.js2json(data, null, '    '));
             event.response.headers =  {
                 status:   200,
