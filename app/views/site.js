@@ -11,18 +11,17 @@
     };
     
     $.extend($V.Site.prototype, {
-        render: function(model){
+        write: function(model){
             log.info("Rendering html template %s ", model.template);
             var template = model.template,
                 result,
                 _this = this;
-            $._render({
+            $.render({
                 async:false,
                 url: template,
                 templateData: model,
-                success: function(result){
-                    log.debug('rendering to stream %s', result);
-                    _this.write(  result  );
+                success: function(rendered){
+                    result = rendered;
                     log.info("Finsihed rendering html template %s ", model.template);
                 },
                 error: function(xhr, status, e){
@@ -32,6 +31,7 @@
                     throw('Error Rendering template '+ template);
                 }
             });
+            return result;
         }
     });
     

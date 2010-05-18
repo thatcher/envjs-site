@@ -85,7 +85,7 @@
         },
         template: function(options){
             return $.extend({
-                $id:        $.uuid(),
+                $id:        'envjs'+$.uuid(),
                 title:      $.title(3),
                 date:       new Date()+'',
                 description:$.paragraphs(2, false),

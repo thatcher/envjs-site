@@ -1,8 +1,8 @@
-<!-- Indices written at Sat, 15 May 2010 14:27:10 UTC -->
+<!-- Indices written at Tue, 18 May 2010 11:46:01 UTC -->
 
 <datastore-indexes>
 
-    <!-- Used 4 times in query history -->
+    <!-- Used 1 time in query history -->
     <datastore-index kind="releases" ancestor="false" source="auto">
         <property name="deleted" direction="asc"/>
         <property name="name" direction="asc"/>
