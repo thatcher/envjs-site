@@ -146,7 +146,7 @@
             ]
         },
         {
-            "deleted": "",
+            "deleted": "true",
             "$id": "options-logLevel",
             "deprecated": "true",
             "page": "options",
@@ -855,8 +855,8 @@
             "deleted": "",
             "$id": "envjs-1.2",
             "repository": "http://github.com/thatcher/env-js/",
-            "zip": "http://github.com/thatcher/env-js/zipball/trunk",
-            "tar": "http://github.com/thatcher/env-js/tarball/trunk",
+            "zip": "http://github.com/thatcher/env-js/zipball/1.2.13",
+            "tar": "http://github.com/thatcher/env-js/tarball/1.2.13",
             "notes": [
                 "HTML5 Parser",
                 "Refactored code base",
