@@ -14,7 +14,7 @@ if [ "shell" == "$1" ]; then
 
     echo "Entering interactive shell, please js> load('shell.js');"
     js
-    
+
 elif [ "test" == "$1" ]; then
     
     echo "Running Tests"

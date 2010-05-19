@@ -6,10 +6,10 @@
     
    $.logging([
         { category:"EnvJS",                         level:"WARN" },
-        { category:"EnvJS.Models",                  level:"DEBUG" },
+        { category:"EnvJS.Models",                  level:"INFO" },
         { category:"EnvJS.Views",                   level:"INFO" },
         { category:"EnvJS.Controllers",             level:"INFO" },
-        { category:"EnvJS.Services",                level:"DEBUG" },
+        { category:"EnvJS.Services",                level:"INFO" },
         { category:"EnvJS.Filters",                 level:"INFO" },
         { category:"Claypool.Models",               level:"INFO" },
         { category:"Claypool.Router",               level:"INFO" },
