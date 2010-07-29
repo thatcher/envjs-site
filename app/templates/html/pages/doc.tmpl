@@ -142,7 +142,7 @@
             {{ /if }}
             
             {{ if admin }}
-                {{ include $.env("templates")+"html/pages/doc.form.tmpl" }}
+                {{ include $.env("templates")+"html/forms/doc.tmpl" }}
                 <br/>
             {{ else }}
                 {{ html $.creole(this.description) }}

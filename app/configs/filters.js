@@ -37,7 +37,6 @@
             log.debug('Intercepted call to render');
             switch( model.parameters.fo ){
                 case 'json':
-                    var newline = "\n";
                     event.response.headers['Content-Type']='text/plain; charset=utf-8';
                     return  $.json(model, null, '    ');
                     break;//do not proceed

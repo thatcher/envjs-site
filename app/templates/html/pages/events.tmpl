@@ -31,7 +31,7 @@
         
     {{ if admin }}
     <div class='event column colborder ${ this.deleted ? "deleted" : ""}'>
-    {{ include $.env( "templates" ) + "html/pages/events.form.tmpl" }}
+    {{ include $.env( "templates" ) + "html/forms/events.tmpl" }}
     </div>
     {{ else }}
     <div class='event column span-4 colborder'>
